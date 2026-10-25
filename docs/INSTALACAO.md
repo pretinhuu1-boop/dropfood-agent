@@ -44,7 +44,8 @@ A persona dos bots, o radar e os alertas leem esse arquivo.
 1. Reinicie o Hermes desktop → interface em PT-BR com a skin DROPFOOD.
 2. Abra o portal do iFood **uma vez, manualmente, você** (regra de ouro) —
    o DROPFOOD usa a sessão já logada, nunca pede senha.
-3. Rode o radar: `hermes dropfood radar` (ou peça no chat: "roda o radar").
+3. Rode o radar (precisa de catálogo gerado antes): `python3 ~/.hermes/dropfood/scripts/radar_precos.py`
+   (ou peça no chat: "roda o radar").
 4. O briefing diário chega no canal configurado (terminal por padrão).
 
 ## Atualização

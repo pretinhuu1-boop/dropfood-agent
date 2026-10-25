@@ -26,6 +26,8 @@ Todo o DROPFOOD lê a identidade da loja de UM arquivo:
 | `frequencia_horas` | number | ciclo do radar de preços (padrão 7h) |
 | `concorrentes` | list | nomes/links das lojas a comparar |
 | `faixas` | list | faixas bom/ok/caro por categoria — embasam MANTEM/SOBE/DESCE/ALERTA |
+| `vitrine.sdk` | bool | usa ifood-sdk para preço de vitrine (OTP do dono, 1x manual) |
+| `vitrine.concorrentes` | list | merchant_ids opcionais; vazio = descobre dos pedidos recentes |
 
 ### portal
 | campo | tipo | descrição |
@@ -56,9 +58,3 @@ O que sobe: config, radar, notas, catálogo (texto pequeno). O que nunca sobe:
 tokens, cookies de sessão do portal, senhas, zips (zips do ambiente vão por
 GitHub Release — `--release`, rotate 3). Design completo:
 `docs/BACKUP-GITHUB.md`.
-
-### canal (bot YOUTUBE/B8)
-| campo | tipo | descrição |
-|---|---|---|
-| `nome` / `url` | string | identidade do canal do dono (persona do B8) |
-| `comunidade` | bool | liga o modelo R$ 50/mês (docs/COMUNIDADE.md) |
