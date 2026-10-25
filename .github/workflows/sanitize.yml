@@ -14,31 +14,36 @@ jobs:
       - name: Varredura de dados sensíveis (nomes/locais reais)
         run: |
           set +e
+          # core/ = snapshot pinado do upstream (NousResearch/hermes-agent);
+          # o gate audita a CAMADA DO PRODUTO, não o código de terceiros.
           LEAKED=$(grep -rIniE "nelsao|nelsão|tatuapé|tatuape|mini mercado" . \
-            --exclude-dir=.git --exclude="sanitize.yml" 2>/dev/null)
+            --exclude-dir=.git --exclude-dir=core --exclude="sanitize.yml" 2>/dev/null)
           if [ -n "$LEAKED" ]; then
             echo "::error::DADOS SENSÍVEIS ENCONTRADOS — remova antes de publicar:"
             echo "$LEAKED" | head -20
             exit 1
           fi
-          echo "OK: nenhum dado real de loja no repo."
+          echo "OK: nenhum dado real de loja na camada do produto."
 
       - name: Varredura de segredos (chaves/tokens/senhas)
         run: |
           set +e
+          # core/ excluído: fixtures de testes do upstream contêm chaves de
+          # exemplo (sk-...); o gate audita segredos da camada do produto.
           SECRETS=$(grep -rInE "(api[_-]?key|secret|password|passwd|token)\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{16,}" . \
-            --exclude-dir=.git --exclude-dir=assets 2>/dev/null)
+            --exclude-dir=.git --exclude-dir=core --exclude-dir=assets 2>/dev/null)
           if [ -n "$SECRETS" ]; then
             echo "::error::SEGREDO POSSÍVEL ENCONTRADO:"
-            echo "$SECRETS" | sed -E 's/(=[:space:]*)[A-Za-z0-9_\-]{6,}/\1********/g' | head -20
+            echo "$SECRETS" | sed -E 's/(= *)[A-Za-z0-9_\-]{6,}/\1********/g' | head -20
             exit 1
           fi
-          echo "OK: nenhum segredo no repo."
+          echo "OK: nenhum segredo na camada do produto."
 
       - name: Varredura de arquivos proibidos
         run: |
           set +e
-          BADFILES=$(find . -path ./.git -prune -o \( -name ".env" -o -name "*.pem" -o -name "*.key" -o -name "*.p12" -o -name "portal_status.json" \) -print)
+          BADFILES=$(find . -path ./.git -prune -o -path ./core -prune -o \
+            \( -name ".env" -o -name "*.pem" -o -name "*.key" -o -name "*.p12" -o -name "portal_status.json" \) -print)
           if [ -n "$BADFILES" ]; then
             echo "::error::ARQUIVOS PROIBIDOS NO REPO:"
             echo "$BADFILES"
