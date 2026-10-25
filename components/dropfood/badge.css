@@ -1,0 +1,18 @@
+.df-badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.35rem;
+  font-family: var(--df-font);
+  font-size: 0.72rem;
+  font-weight: 800;
+  border: 2px solid var(--df-ink);
+  border-radius: 999px;
+  background: var(--df-primary);
+  color: var(--df-ink);
+  box-shadow: var(--df-shadow-sm);
+}
+.df-badge--brand { background: var(--df-brand); color: #fff; }
+.df-badge--warn  { background: var(--df-warn); }
+.df-badge--bad   { background: var(--df-tertiary); color: #fff; }

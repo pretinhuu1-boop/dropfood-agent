@@ -1,0 +1,100 @@
+{
+  "name": "dropfood",
+  "type": "registry:style",
+  "description": "DROPFOOD — componentes neobrutal sobre tokens do DESIGN-DROPFOOD",
+  "dependencies": [
+    "react"
+  ],
+  "registry": [
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "registry": [
+        {
+          "name": "alert",
+          "type": "registry:file",
+          "path": "components/dropfood/alert.css",
+          "content": ".df-alert {\n  font-family: var(--df-font);\n  font-size: 0.9rem;\n  font-weight: 600;\n  padding: 0.7rem 0.9rem;\n  border: 2px solid var(--df-ink);\n  border-left-width: 6px;\n  border-radius: var(--df-radius);\n  background: var(--df-paper);\n  box-shadow: var(--df-shadow-sm);\n}\n.df-alert--info { border-left-color: var(--df-primary); }\n.df-alert--warn { border-left-color: var(--df-warn); }\n.df-alert--bad  { border-left-color: var(--df-tertiary); }\n.df-alert--ok   { border-left-color: var(--df-secondary); }\n"
+        },
+        {
+          "name": "alert",
+          "type": "registry:file",
+          "path": "components/dropfood/alert.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\n\nexport interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {\n  tone?: \"info\" | \"warn\" | \"bad\" | \"ok\";\n}\n\n/* alerta com borda dura — feedback de operação (preço, ban, erro) */\nexport function Alert({ tone = \"info\", className = \"\", children, ...props }: AlertProps) {\n  return (\n    <div role=\"alert\" className={`df-alert df-alert--${tone} ${className}`.trim()} {...props}>\n      {children}\n    </div>\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "registry": [
+        {
+          "name": "badge",
+          "type": "registry:file",
+          "path": "components/dropfood/badge.css",
+          "content": ".df-badge {\n  display: inline-grid;\n  place-items: center;\n  min-width: 1.4rem;\n  height: 1.4rem;\n  padding: 0 0.35rem;\n  font-family: var(--df-font);\n  font-size: 0.72rem;\n  font-weight: 800;\n  border: 2px solid var(--df-ink);\n  border-radius: 999px;\n  background: var(--df-primary);\n  color: var(--df-ink);\n  box-shadow: var(--df-shadow-sm);\n}\n.df-badge--brand { background: var(--df-brand); color: #fff; }\n.df-badge--warn  { background: var(--df-warn); }\n.df-badge--bad   { background: var(--df-tertiary); color: #fff; }\n"
+        },
+        {
+          "name": "badge",
+          "type": "registry:file",
+          "path": "components/dropfood/badge.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\n\nexport interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {\n  tone?: \"primary\" | \"brand\" | \"warn\" | \"bad\";\n}\n\n/* badge numerico (contador de tarefas, notificacoes) */\nexport function Badge({ tone = \"primary\", className = \"\", children, ...props }: BadgeProps) {\n  return (\n    <span className={`df-badge df-badge--${tone} ${className}`.trim()} {...props}>\n      {children}\n    </span>\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "registry": [
+        {
+          "name": "button",
+          "type": "registry:file",
+          "path": "components/dropfood/button.css",
+          "content": "/* classes do df-btn — tokens em tokens.css */\n.df-btn {\n  --btn-bg: var(--df-paper);\n  --btn-fg: var(--df-ink);\n  font-family: var(--df-font);\n  font-weight: 700;\n  border: 2px solid var(--df-ink);\n  border-radius: var(--df-radius);\n  background: var(--btn-bg);\n  color: var(--btn-fg);\n  box-shadow: var(--df-shadow);\n  cursor: pointer;\n  transition: transform 80ms ease, box-shadow 80ms ease;\n  line-height: 1;\n}\n.df-btn:hover { transform: translate(-1px, -1px); box-shadow: 0 5px 0 var(--df-ink); }\n.df-btn:active { transform: translate(2px, 2px); box-shadow: none; }\n.df-btn:focus-visible { outline: 3px solid var(--df-primary); outline-offset: 2px; }\n.df-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: var(--df-shadow-sm); }\n\n.df-btn--paper   { --btn-bg: var(--df-paper); }\n.df-btn--primary { --btn-bg: var(--df-primary); }\n.df-btn--brand   { --btn-bg: var(--df-brand); --btn-fg: #fff; }\n.df-btn--danger  { --btn-bg: var(--df-tertiary); --btn-fg: #fff; }\n.df-btn--ghost   { --btn-bg: transparent; box-shadow: none; }\n\n.df-btn--sm { padding: 0.35rem 0.7rem; font-size: 0.8rem; }\n.df-btn--md { padding: 0.55rem 1rem; font-size: 0.9rem; }\n.df-btn--lg { padding: 0.8rem 1.4rem; font-size: 1.05rem; }\n"
+        },
+        {
+          "name": "button",
+          "type": "registry:file",
+          "path": "components/dropfood/button.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\n\nexport interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  variant?: \"paper\" | \"primary\" | \"brand\" | \"danger\" | \"ghost\";\n  size?: \"sm\" | \"md\" | \"lg\";\n}\n\n/* neobrutal: borda 2px ink, sombra dura que \"desloca\" no hover/active */\nexport function Button({ variant = \"paper\", size = \"md\", className = \"\", ...props }: ButtonProps) {\n  const base = [\n    \"df-btn\",\n    `df-btn--${variant}`,\n    `df-btn--${size}`,\n    className,\n  ].join(\" \");\n  return <button className={base} {...props} />;\n}\n"
+        }
+      ]
+    },
+    {
+      "name": "chip",
+      "type": "registry:ui",
+      "registry": [
+        {
+          "name": "chip",
+          "type": "registry:file",
+          "path": "components/dropfood/chip.css",
+          "content": ".df-chip {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.4rem;\n  font-family: var(--df-font);\n  font-size: 0.75rem;\n  font-weight: 700;\n  letter-spacing: 0.02em;\n  text-transform: uppercase;\n  padding: 0.25rem 0.6rem;\n  border: 2px solid var(--df-ink);\n  border-radius: 999px;\n  background: var(--df-paper);\n  color: var(--df-ink);\n  box-shadow: var(--df-shadow-sm);\n}\n.df-chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--df-border); }\n.df-chip--ok   { background: var(--df-secondary); }\n.df-chip--ok .df-chip__dot   { background: #065f46; }\n.df-chip--warn { background: var(--df-warn); }\n.df-chip--warn .df-chip__dot { background: #7c2d12; }\n.df-chip--bad  { background: var(--df-tertiary); color: #fff; }\n.df-chip--bad .df-chip__dot  { background: #7f1d1d; }\n.df-chip--info { background: var(--df-paper); }\n.df-chip--info .df-chip__dot { background: var(--df-primary); }\n"
+        },
+        {
+          "name": "chip",
+          "type": "registry:file",
+          "path": "components/dropfood/chip.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\n\nexport interface ChipProps extends React.HTMLAttributes<HTMLSpanElement> {\n  tone?: \"ok\" | \"warn\" | \"bad\" | \"info\";\n  dot?: boolean;\n}\n\n/* chip de estado (preço ok, alerta, radar...) com dot de status */\nexport function Chip({ tone = \"info\", dot = false, className = \"\", children, ...props }: ChipProps) {\n  return (\n    <span className={`df-chip df-chip--${tone} ${className}`} {...props}>\n      {dot && <span className=\"df-chip__dot\" aria-hidden />}\n      {children}\n    </span>\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "registry": [
+        {
+          "name": "input",
+          "type": "registry:file",
+          "path": "components/dropfood/input.css",
+          "content": ".df-input {\n  font-family: var(--df-font);\n  font-size: 0.95rem;\n  font-weight: 600;\n  color: var(--df-ink);\n  background: var(--df-paper);\n  border: 2px solid var(--df-ink);\n  border-radius: var(--df-radius);\n  box-shadow: var(--df-shadow-sm);\n  padding: 0.55rem 0.8rem;\n  min-width: 0;\n  width: 100%;\n}\n.df-input::placeholder { color: var(--df-dim); font-weight: 500; }\n.df-input:focus-visible { outline: 3px solid var(--df-primary); outline-offset: 1px; }\n.df-input--invalid { border-color: var(--df-tertiary); background: #fef2f2; }\n.df-input:disabled { opacity: 0.5; cursor: not-allowed; }\n"
+        },
+        {
+          "name": "input",
+          "type": "registry:file",
+          "path": "components/dropfood/input.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\n\nexport interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {\n  invalid?: boolean;\n}\n\nexport function Input({ invalid = false, className = \"\", ...props }: InputProps) {\n  return (\n    <input\n      aria-invalid={invalid || undefined}\n      className={`df-input ${invalid ? \"df-input--invalid\" : \"\"} ${className}`.trim()}\n      {...props}\n    />\n  );\n}\n"
+        }
+      ]
+    }
+  ]
+}

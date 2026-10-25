@@ -1,0 +1,29 @@
+/* classes do df-btn — tokens em tokens.css */
+.df-btn {
+  --btn-bg: var(--df-paper);
+  --btn-fg: var(--df-ink);
+  font-family: var(--df-font);
+  font-weight: 700;
+  border: 2px solid var(--df-ink);
+  border-radius: var(--df-radius);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  box-shadow: var(--df-shadow);
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+  line-height: 1;
+}
+.df-btn:hover { transform: translate(-1px, -1px); box-shadow: 0 5px 0 var(--df-ink); }
+.df-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+.df-btn:focus-visible { outline: 3px solid var(--df-primary); outline-offset: 2px; }
+.df-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: var(--df-shadow-sm); }
+
+.df-btn--paper   { --btn-bg: var(--df-paper); }
+.df-btn--primary { --btn-bg: var(--df-primary); }
+.df-btn--brand   { --btn-bg: var(--df-brand); --btn-fg: #fff; }
+.df-btn--danger  { --btn-bg: var(--df-tertiary); --btn-fg: #fff; }
+.df-btn--ghost   { --btn-bg: transparent; box-shadow: none; }
+
+.df-btn--sm { padding: 0.35rem 0.7rem; font-size: 0.8rem; }
+.df-btn--md { padding: 0.55rem 1rem; font-size: 0.9rem; }
+.df-btn--lg { padding: 0.8rem 1.4rem; font-size: 1.05rem; }

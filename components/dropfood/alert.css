@@ -1,0 +1,15 @@
+.df-alert {
+  font-family: var(--df-font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.7rem 0.9rem;
+  border: 2px solid var(--df-ink);
+  border-left-width: 6px;
+  border-radius: var(--df-radius);
+  background: var(--df-paper);
+  box-shadow: var(--df-shadow-sm);
+}
+.df-alert--info { border-left-color: var(--df-primary); }
+.df-alert--warn { border-left-color: var(--df-warn); }
+.df-alert--bad  { border-left-color: var(--df-tertiary); }
+.df-alert--ok   { border-left-color: var(--df-secondary); }

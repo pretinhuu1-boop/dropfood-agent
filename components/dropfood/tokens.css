@@ -1,0 +1,18 @@
+/* DROPFOOD — tokens (cores oficiais do DESIGN-DROPFOOD) */
+:root {
+  --df-bg: #171310;        /* fundo café */
+  --df-ink: #0f0d0b;       /* quase preto (texto/sombra) */
+  --df-paper: #ede5d8;     /* papel */
+  --df-dim: #9c9185;       /* secundário */
+  --df-border: #3a332b;    /* borda estrutura */
+  --df-primary: #f0b429;   /* amarelo */
+  --df-secondary: #34d399; /* verde */
+  --df-tertiary: #f87171;  /* vermelho */
+  --df-warn: #fb923c;      /* laranja */
+  --df-brand: #16a34a;     /* verde da loja */
+  --df-brand-deep: #14532d;
+  --df-radius: 4px;
+  --df-shadow: 0 4px 0 var(--df-ink);
+  --df-shadow-sm: 0 2px 0 var(--df-ink);
+  --df-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}

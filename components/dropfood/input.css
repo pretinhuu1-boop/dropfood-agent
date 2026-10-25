@@ -1,0 +1,17 @@
+.df-input {
+  font-family: var(--df-font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--df-ink);
+  background: var(--df-paper);
+  border: 2px solid var(--df-ink);
+  border-radius: var(--df-radius);
+  box-shadow: var(--df-shadow-sm);
+  padding: 0.55rem 0.8rem;
+  min-width: 0;
+  width: 100%;
+}
+.df-input::placeholder { color: var(--df-dim); font-weight: 500; }
+.df-input:focus-visible { outline: 3px solid var(--df-primary); outline-offset: 1px; }
+.df-input--invalid { border-color: var(--df-tertiary); background: #fef2f2; }
+.df-input:disabled { opacity: 0.5; cursor: not-allowed; }
