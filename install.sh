@@ -31,10 +31,41 @@ mkdir -p "$HERMES_HOME/loja"
 [ -f "$HERMES_HOME/loja/config.yaml" ] || cp "$REPO_DIR/config.yaml.example" "$HERMES_HOME/loja/config.yaml"
 echo "  ✓ perfil de loja (config.yaml)"
 
-# D1 + PT-BR — ativa via CLI do Hermes, se disponível
+# D4 — desktop plugin do produto (runtime, zero patch no core)
+if [ -d "$REPO_DIR/desktop-plugins/dropfood" ]; then
+  mkdir -p "$HERMES_HOME/desktop-plugins"
+  rm -rf "$HERMES_HOME/desktop-plugins/dropfood"
+  cp -R "$REPO_DIR/desktop-plugins/dropfood" "$HERMES_HOME/desktop-plugins/"
+  echo "  ✓ desktop plugin dropfood (\$HERMES_HOME/desktop-plugins/dropfood/plugin.js)"
+fi
+
+# F4 — core standalone: se a CLI hermes global não existe, monta o core do fork
+# (o produto NÃO depende do Hermes instalado; o desktop do repo é o app).
+if ! command -v hermes >/dev/null 2>&1; then
+  echo "  · CLI 'hermes' global ausente — usando o core do fork (core/hermes)"
+  PY=""
+  for c in python3.14 python3.13 python3.12 python3; do
+    if command -v "$c" >/dev/null 2>&1 && "$c" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)' 2>/dev/null; then
+      PY="$(command -v "$c")"
+      break
+    fi
+  done
+  if [ -n "$PY" ] && [ -d "$REPO_DIR/core" ]; then
+    "$PY" "$REPO_DIR/core/hermes" pm repair >/dev/null 2>&1 \
+      && echo "  ✓ core montado (pm repair)" \
+      || echo "  ! pm repair do core falhou — rode à mão: python3 core/hermes pm repair"
+  else
+    echo "  ! Python 3.10+ não encontrado para o core standalone"
+  fi
+fi
+
+# D1 + PT-BR — ativa via CLI do Hermes (global ou core do fork)
 if command -v hermes >/dev/null 2>&1; then
   hermes config set display.skin dropfood >/dev/null 2>&1 && echo "  ✓ skin ativada (display.skin=dropfood)"
   hermes config set display.language pt >/dev/null 2>&1 && echo "  ✓ idioma PT-BR (display.language=pt)"
+elif [ -x "$REPO_DIR/core/hermes" ]; then
+  "$REPO_DIR/core/hermes" config set display.skin dropfood >/dev/null 2>&1 && echo "  ✓ skin ativada via core (display.skin=dropfood)"
+  "$REPO_DIR/core/hermes" config set display.language pt >/dev/null 2>&1 && echo "  ✓ idioma PT-BR via core (display.language=pt)"
 else
   echo "  ! CLI 'hermes' não achada — ative depois: hermes config set display.skin dropfood"
 fi

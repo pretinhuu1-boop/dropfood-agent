@@ -23,6 +23,11 @@ O install copia em `~/.hermes/`:
 - `skills/dropfood-ops/` (skill de operação)
 - `loja/config.yaml` (perfil da loja — a partir do exemplo)
 - `dropfood/scripts/` (utilitários: radar, espelho, monitor, wizard, backup)
+- `desktop-plugins/dropfood/plugin.js` (chip de operação na status bar do
+  desktop — carregado em runtime, zero patch no core)
+- Sem CLI `hermes` global: o install monta o **core do próprio fork**
+  (`core/hermes pm repair`) — o produto não depende de instalação separada do
+  Hermes (F4 standalone).
 
 Para o radar de vitrine (ifood-sdk, opcional — exige Python 3.14+):
 `./install.sh --com-sdk` (cria `~/.hermes/dropfood/venv` com pyyaml + ifood-sdk).
