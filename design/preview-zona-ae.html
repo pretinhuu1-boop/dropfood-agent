@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{
+  --df-bg:#fdf9f0; --df-ink:#111111; --df-paper:#fffdf7; --df-dim:rgba(17,17,17,.62);
+  --df-primary:#ff3d81; --df-secondary:#3ddc97; --df-tertiary:#ff6b5e; --df-warn:#ffd23f;
+  --df-lilac:#c8a2ff; --df-brand:#0e9f6e; --df-radius:8px; --df-radius-lg:18px;
+  --df-shadow:4px 4px 0 var(--df-ink); --df-shadow-sm:3px 3px 0 var(--df-ink);
+  --df-font:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --df-font-display:'Archivo Black','Space Grotesk',sans-serif;
+  --df-font-mono:'Space Mono',ui-monospace,monospace;
+  --df-motion-fast:80ms; --df-motion-base:150ms; --df-motion-slow:260ms;
+  --df-motion-ease:cubic-bezier(.2,.8,.2,1); --df-motion-ease-step:steps(2,jump-none); --df-motion-pulse:1.1s;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--df-bg);font-family:var(--df-font);color:var(--df-ink);padding:22px;width:780px}
+.tag{display:inline-block;font-family:var(--df-font-mono);font-size:10px;font-weight:700;letter-spacing:.14em;background:var(--df-ink);color:var(--df-bg);padding:3px 8px;margin-bottom:12px}
+h1{font-family:var(--df-font-display);font-size:18px;letter-spacing:-.02em;margin-bottom:4px}
+.sub{font-size:12px;color:var(--df-dim);font-weight:600;margin-bottom:18px}
+.sec{margin-bottom:24px}
+.sec h2{font-family:var(--df-font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--df-dim);border-bottom:2px solid var(--df-ink);padding-bottom:5px;margin-bottom:12px}
+
+/* drive-preview */
+.df-drive{display:flex;align-items:center;gap:8px;padding:8px 10px;border:2px solid var(--df-ink);border-radius:8px 8px 0 0;background:var(--df-paper);box-shadow:var(--df-shadow-sm);font-family:var(--df-font);min-width:0}
+.df-drive__btn{font-family:var(--df-font-mono);font-size:.8rem;font-weight:700;border:2px solid var(--df-ink);border-radius:6px;background:var(--df-bg);width:26px;height:24px;display:inline-grid;place-items:center;cursor:pointer;box-shadow:2px 2px 0 var(--df-ink);flex:none}
+.df-drive__url{flex:1;min-width:0;border:2px solid var(--df-ink);border-radius:6px;background:var(--df-bg);padding:3px 8px;font-family:var(--df-font-mono);font-size:.68rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.df-drive__url--loading::after{content:"";display:inline-block;width:8px;height:8px;margin-left:6px;border:2px solid var(--df-ink);border-radius:2px;background:var(--df-warn);animation:df-drive-load var(--df-motion-pulse) infinite var(--df-motion-ease-step)}
+@keyframes df-drive-load{0%,100%{transform:translate(0,0)}50%{transform:translate(2px,2px)}}
+
+/* browser-session */
+.df-browser-session{display:inline-flex;align-items:center;gap:6px;font-family:var(--df-font-mono);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 9px 2px 3px;border:2px solid var(--df-ink);border-radius:999px;background:var(--df-bg);box-shadow:2px 2px 0 var(--df-ink);cursor:pointer;white-space:nowrap}
+.df-browser-session__dot{width:8px;height:8px;border:1.5px solid var(--df-ink);border-radius:2px;background:var(--df-dim)}
+.df-browser-session--active{background:var(--df-secondary)}
+.df-browser-session--otp{background:var(--df-warn)}
+.df-browser-session--broken{background:var(--df-tertiary)}
+.df-browser-session--active .df-browser-session__dot{background:var(--df-ink)}
+.df-browser-session--otp .df-browser-session__dot{background:var(--df-ink);animation:df-drive-load var(--df-motion-pulse) infinite var(--df-motion-ease-step)}
+
+/* preview pane mock */
+.pane{border:2px solid var(--df-ink);border-top-width:0;border-radius:0 0 8px 8px;background:var(--df-bg);min-height:120px;padding:12px;box-shadow:var(--df-shadow-sm)}
+.pcard{border:2px solid var(--df-ink);border-radius:8px;background:#fff;padding:8px 10px;display:flex;align-items:center;gap:10px;box-shadow:2px 2px 0 var(--df-ink);max-width:320px;margin-bottom:8px}
+.pthumb{width:30px;height:30px;border:2px solid var(--df-ink);border-radius:6px;background:var(--df-canary,var(--df-warn));display:flex;align-items:center;justify-content:center;font-family:var(--df-font-display);font-size:12px}
+.pinfo{flex:1}
+.pinfo b{font-size:10.5px;display:block}
+.pinfo i{font-size:8.5px;color:var(--df-dim);font-style:normal}
+.price{font-family:var(--df-font-mono);font-weight:700;font-size:13px;border:2px solid var(--df-ink);border-radius:6px;padding:2px 8px;background:var(--df-secondary);box-shadow:2px 2px 0 var(--df-ink)}
+
+/* df-onboarding */
+.df-onboarding{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:32px 24px;background:var(--df-bg);font-family:var(--df-font);color:var(--df-ink);border:2px solid var(--df-ink);border-radius:18px;box-shadow:var(--df-shadow)}
+.df-onboarding__logo{width:88px;height:88px;filter:drop-shadow(4px 4px 0 rgba(17,17,17,.9))}
+.df-onboarding__title{font-family:var(--df-font-display);font-size:1.5rem;letter-spacing:-.02em;text-align:center}
+.df-onboarding__sub{font-size:.8rem;font-weight:600;color:var(--df-dim);text-align:center;max-width:400px;line-height:1.5}
+.df-onboarding__steps{display:flex;flex-direction:column;gap:8px;width:min(400px,90%)}
+.df-onboarding__step{display:flex;align-items:flex-start;gap:10px;border:2px solid var(--df-ink);border-radius:8px;background:var(--df-paper);box-shadow:var(--df-shadow-sm);padding:9px 12px}
+.df-onboarding__step--done{background:var(--df-secondary)}
+.df-onboarding__step--now{background:var(--df-warn)}
+.df-onboarding__stepb{flex:none;width:20px;height:20px;border:2px solid var(--df-ink);border-radius:5px;display:grid;place-items:center;font-family:var(--df-font-display);font-size:.6rem;background:var(--df-bg)}
+.df-onboarding__stepb--done{background:var(--df-ink);color:var(--df-bg)}
+.df-onboarding__stepb--now{background:var(--df-primary)}
+.df-onboarding__stept{font-size:.76rem;font-weight:700;line-height:1.35}
+.df-onboarding__stept small{display:block;font-size:.66rem;font-weight:500;color:var(--df-dim)}
+.df-onboarding__action{margin-top:6px;font-family:var(--df-font);font-weight:700;font-size:.85rem;border:2px solid var(--df-ink);border-radius:8px;background:var(--df-primary);box-shadow:var(--df-shadow);padding:9px 20px;cursor:pointer}
+.df-onboarding__foot{font-family:var(--df-font-mono);font-size:.58rem;color:var(--df-dim)}
+</style>
+</head>
+<body>
+<span class="tag">ZONA A + ZONA E — navegador central e tela de entrada (D6/D9/D8)</span>
+<h1>Portal no centro, operador na lateral, entrada da loja</h1>
+<div class="sub">drive-preview (wrapper do preview-act nativo) · browser-session na barra (D9) · df-onboarding re-skin (D8)</div>
+
+<div class="sec">
+  <h2>① Zona A — navegador central com chip de sessão</h2>
+  <div class="df-drive">
+    <button class="df-drive__btn">←</button><button class="df-drive__btn">↻</button>
+    <span class="df-drive__url df-drive__url--loading">portal.ifood.com.br/mercado</span>
+    <span class="df-browser-session df-browser-session--active"><span class="df-browser-session__dot"></span>portal ativo</span>
+  </div>
+  <div class="pane">
+    <div class="pcard"><div class="pthumb" style="background:var(--df-warn)">C</div><div class="pinfo"><b>Cerveja Lata 350ml</b><i>loja concorrente</i></div><div class="price">R$ 3,49</div></div>
+    <div class="pcard"><div class="pthumb" style="background:var(--df-lilac)">R</div><div class="pinfo"><b>Refrigerante 2L</b><i>sua loja · entregas ~35min</i></div><div class="price">R$ 6,99</div></div>
+  </div>
+  <div style="display:flex;gap:10px;margin-top:10px">
+    <span class="df-browser-session df-browser-session--active"><span class="df-browser-session__dot"></span>portal ativo</span>
+    <span class="df-browser-session df-browser-session--otp"><span class="df-browser-session__dot"></span>OTP pendente</span>
+    <span class="df-browser-session df-browser-session--broken"><span class="df-browser-session__dot"></span>sessão quebrou</span>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>② Zona E — tela de entrada (F1, re-skin do onboarding nativo)</h2>
+  <div class="df-onboarding">
+    <img class="df-onboarding__logo" src="logo/logo-dropfood-marca.png" alt="DROPFOOD">
+    <h1 class="df-onboarding__title">DROPFOOD Agent</h1>
+    <p class="df-onboarding__sub">Conecte a sua loja do iFood Mercado e comece a operar com o seu time de bots.</p>
+    <div class="df-onboarding__steps">
+      <div class="df-onboarding__step df-onboarding__step--done"><span class="df-onboarding__stepb df-onboarding__stepb--done">✓</span><div class="df-onboarding__stept">Instalação concluída<small>camada do produto + venv (--com-sdk opcional)</small></div></div>
+      <div class="df-onboarding__step df-onboarding__step--now"><span class="df-onboarding__stepb df-onboarding__stepb--now">2</span><div class="df-onboarding__stept">Wizard da loja<small>python3 wizard.py — nome, modelo, fornecedor, markup</small></div></div>
+      <div class="df-onboarding__step"><span class="df-onboarding__stepb">3</span><div class="df-onboarding__stept">Login manual no portal<small>1x, pelo dono — o DROPFOOD nunca pede senha</small></div></div>
+    </div>
+    <button class="df-onboarding__action">Começar operação</button>
+    <div class="df-onboarding__foot">fork do Hermes · core pinado d0509566 · MIT</div>
+  </div>
+</div>
+</body>
+</html>

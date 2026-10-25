@@ -1,0 +1,99 @@
+/* df-onboarding — tela de entrada do produto (F1, D8: re-skin do onboarding
+   nativo do Hermes, sem fluxo novo). Logo dropfood + "conecte sua loja"
+   (login manual do dono, 1x — regra de ouro) + passos iniciais.
+   Neobrutal puro: cream, blocos ink, pink de ação, sombras duras. */
+.df-onboarding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-height: 100%;
+  width: 100%;
+  padding: 40px 24px;
+  background: var(--df-bg);
+  font-family: var(--df-font);
+  color: var(--df-ink);
+}
+.df-onboarding__logo {
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(4px 4px 0 rgba(17, 17, 17, 0.9));
+}
+.df-onboarding__title {
+  font-family: var(--df-font-display);
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+.df-onboarding__sub {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--df-dim);
+  text-align: center;
+  max-width: 420px;
+  line-height: 1.5;
+}
+.df-onboarding__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(420px, 90%);
+  margin-top: 8px;
+}
+.df-onboarding__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 2px solid var(--df-ink);
+  border-radius: var(--df-radius);
+  background: var(--df-paper);
+  box-shadow: var(--df-shadow-sm);
+  padding: 10px 12px;
+}
+.df-onboarding__step--done { background: var(--df-secondary); }
+.df-onboarding__step--now { background: var(--df-warn); }
+.df-onboarding__stepb {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--df-ink);
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  font-family: var(--df-font-display);
+  font-size: 0.6rem;
+  background: var(--df-bg);
+}
+.df-onboarding__stepb--done { background: var(--df-ink); color: var(--df-bg); }
+.df-onboarding__stepb--now { background: var(--df-primary); }
+.df-onboarding__stept { font-size: 0.78rem; font-weight: 700; line-height: 1.35; }
+.df-onboarding__stept small {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--df-dim);
+}
+.df-onboarding__action {
+  margin-top: 8px;
+  font-family: var(--df-font);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 2px solid var(--df-ink);
+  border-radius: var(--df-radius);
+  background: var(--df-primary);
+  color: var(--df-ink);
+  box-shadow: var(--df-shadow);
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: transform var(--df-motion-fast) var(--df-motion-ease),
+              box-shadow var(--df-motion-fast) var(--df-motion-ease);
+}
+.df-onboarding__action:hover { transform: translate(-1px, -1px); box-shadow: 0 5px 0 var(--df-ink); }
+.df-onboarding__action:active { transform: translate(2px, 2px); box-shadow: none; }
+.df-onboarding__foot {
+  font-family: var(--df-font-mono);
+  font-size: 0.6rem;
+  color: var(--df-dim);
+  text-align: center;
+}

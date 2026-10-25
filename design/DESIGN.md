@@ -1,42 +1,41 @@
 ---
 version: alpha
 name: DROPFOOD
-description: Neobrutalismo de mercado brasileiro — café quente, amarelo de preço bom, verde de entrega. UI do produto DROPFOOD Agent sobre o Hermes desktop.
+description: Neobrutalismo de mercado brasileiro — cream quente, rosa de ação, hortelã de sucesso, amarelo de preço bom. UI do produto DROPFOOD Agent sobre o Hermes desktop.
 colors:
-  primary: "#F0B429"
-  secondary: "#34D399"
-  tertiary: "#F87171"
-  warn: "#FB923C"
-  neutral: "#EDE5D8"
-  neutralDim: "#9C9185"
-  background: "#171310"
-  ink: "#000000"
-  border: "#3A332B"
-  brand: "#16a34a"
-  brandDeep: "#14532d"
-  paper: "#fafaf9"
-  label: "#D8CCBB"
-  thinking: "#B4A896"
+  primary: "#FF3D81"
+  secondary: "#3DDC97"
+  tertiary: "#FF6B5E"
+  warn: "#FFD23F"
+  neutral: "#FDF9F0"
+  neutralDim: "rgba(17,17,17,0.62)"
+  background: "#FDF9F0"
+  ink: "#111111"
+  border: "#111111"
+  brand: "#0E9F6E"
+  paper: "#FFFDF7"
+  thinking: "#6B655C"
+  lilac: "#C8A2FF"
 typography:
   display:
-    fontFamily: system-ui, -apple-system, sans-serif
+    fontFamily: "Archivo Black, Space Grotesk, sans-serif"
     fontSize: 3rem
     fontWeight: 900
     lineHeight: 1.0
     letterSpacing: "-0.03em"
   heading:
-    fontFamily: system-ui, -apple-system, sans-serif
+    fontFamily: "Archivo Black, Space Grotesk, sans-serif"
     fontSize: 1.5rem
     fontWeight: 800
     lineHeight: 1.15
     letterSpacing: "-0.01em"
   body:
-    fontFamily: system-ui, -apple-system, sans-serif
+    fontFamily: "Space Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: 1rem
-    fontWeight: 400
+    fontWeight: 500
     lineHeight: 1.5
   label:
-    fontFamily: system-ui, -apple-system, sans-serif
+    fontFamily: "Space Mono, ui-monospace, monospace"
     fontSize: 0.75rem
     fontWeight: 700
     letterSpacing: "0.15em"
@@ -44,44 +43,49 @@ rounded:
   sm: 2px
   md: 4px
   lg: 8px
+  xl: 18px
 spacing:
   xs: 4px
   sm: 8px
   md: 16px
   lg: 24px
   xl: 40px
+elevation:
+  sm: "4px 4px 0 #111111"
+  md: "6px 6px 0 #111111"
+  lg: "9px 9px 0 #111111"
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
+    rounded: "{rounded.lg}"
     padding: 12px
   button-primary-hover:
-    backgroundColor: "{colors.brandDeep}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.sm}"
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.lg}"
     padding: 12px
   button-secondary:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.primary}"
-    rounded: "{rounded.sm}"
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.lg}"
     padding: 12px
   card:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.neutral}"
-    rounded: "{rounded.md}"
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.xl}"
   badge-ok:
     backgroundColor: "{colors.secondary}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
+    rounded: "{rounded.lg}"
   badge-warn:
     backgroundColor: "{colors.warn}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
+    rounded: "{rounded.lg}"
   badge-error:
     backgroundColor: "{colors.tertiary}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
+    rounded: "{rounded.lg}"
   tool-marker:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.ink}"
@@ -94,8 +98,12 @@ components:
     textColor: "{colors.neutral}"
   label-chip:
     backgroundColor: "{colors.background}"
-    textColor: "{colors.label}"
-    rounded: "{rounded.sm}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.lg}"
+  accent-lilac:
+    backgroundColor: "{colors.lilac}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.lg}"
   thinking-text:
     backgroundColor: "{colors.background}"
     textColor: "{colors.thinking}"
@@ -109,9 +117,9 @@ components:
 ## Overview
 
 O DROPFOOD é o agente open source do dono de mercado brasileiro. A identidade é
-**neobrutalismo quente**: blocos sólidos, bordas marcadas, contraste chapado —
-mas com a paleta de um mercadinho de bairro à noite (café, amarelo de "preço
-bom", verde de entrega) em vez do cinza frio dos temas de desenvolvedor. Tudo
+**neobrutalismo de mercado**: blocos sólidos, bordas marcadas, contraste chapado —
+cream quente de caderno de padaria, pink de ação, mint de sucesso, amarelo de
+"preço bom". Tudo
 corre sobre o Hermes desktop; este spec é a fonte única dos tokens, e o
 apêndice mapeia cada token para as keys reais do skin engine do Hermes.
 
@@ -147,10 +155,11 @@ accent geral.
 
 ## Typography
 
-system-ui em tudo (sem fontes custom na v1). **Display** = uppercase,
+**Display** = Archivo Black, uppercase
 weight 900, tracking -0.03em (o "DROPFOOD" do logo e do gancho).
-**Heading** = weight 800, tracking -0.01em. **Body** = regular 1rem/1.5.
-**Label** = uppercase, weight 700, tracking 0.15em (chips, badge, "AGENT").
+**Heading** = Archivo Black, weight 800, tracking -0.01em. **Body** = Space
+Grotesk 500, 1rem/1.5. **Label** = Space Mono, uppercase, weight 700,
+tracking 0.15em (chips, badge, "AGENT").
 
 ## Layout
 
@@ -163,6 +172,13 @@ raio), sombras duras (offset 4px, sem blur) — não existe sombra suave.
 Neobrutal: elevação = deslocamento duro (0 4px 0 Ink), não blur. Um card
 "flutuante" tem o bloco de sombra em Ink deslocado 4px pra baixo.
 
+## Motion
+
+Linguagem única de animação (decisão do dono 25/10 — D4; só em
+`tokens.css`, fora do schema do lint): deslocamento 2px em vez de fade,
+durações curtas (80ms fast · 150ms base · 260ms slow), `steps` em vez de
+lerp onde der. Tokens: `--df-motion-fast/base/slow/step/ease/ease-step/pulse`.
+
 ## Shapes
 
 Cantos: 2px (sm), 4px (md), 8px (lg — só em superfícies grandes como o
@@ -170,20 +186,23 @@ composer). Sem raio acima de 8px. O logo é círculo (exceção explícita).
 
 ## Components
 
-- **button-primary:** bloco amarelo, texto ink, borda ink, sombra dura.
-  Hover → verde-escuro BrandDeep com texto paper (a "entrega" da ação).
-- **button-secondary:** bloco café com contorno amarelo.
-- **card:** superfície café, borda marcada, conteúdo creme.
+- **button-primary:** bloco pink, texto ink, borda ink, sombra dura, hover
+  desloca (-1,-1). Pink é a ação de tudo que é clicável (contraste AA sobre
+  cream, texto ink).
+- **button-secondary:** bloco cream com borda ink (ação neutra).
+- **card:** superfície paper, borda ink 2px, sombra dura 4px, raio 18px.
 - **badge-ok/warn/error:** status do radar (MANTEM/SOBE/DESCE/ALERTA).
 - **tool-marker:** o ● de tool-call do Hermes em Primary (sem tocar headings).
 
 ## Do's and Don'ts
 
-- **Faça:** borda marcada em Primary; blocos sólidos; contraste chapado;
-  superfícies escuras com texto creme; brand verde só no logo/hover.
-- **Não faça:** sombras suaves/neblur; raios grandes; gradientes; texto de
-  baixo contraste sobre Primary; verde Brand como accent geral (o accent é
-  o amarelo — o verde é sucesso/marca).
+- **Faça:** borda marcada em ink; blocos sólidos de cor chapa; contraste
+  chapado; texto ink sobre pink/mint/canary/lilac/coral (AA); sombras duras
+  4/6/9px; deslocamento 2px no hover/active.
+- **Não faça:** sombras suaves/neblur; gradientes; raios acima de 18px;
+  texto de baixo contraste sobre Primary; verde-brand como accent geral (o
+  accent é o pink — o brand verde é sucesso/links AA sobre cream; motion usa
+  steps e durações curtas (--df-motion-*), nunca lerp longo.
 
 ---
 

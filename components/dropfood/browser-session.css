@@ -1,0 +1,43 @@
+/* browser-session — chip de estado da sessão do portal iFood (Zona A, D9).
+   Na BARRA DO NAVEGADOR: ativa (mint) · OTP pendente (canary) · quebrada
+   (coral). Login é manual do dono, 1x — regra de ouro; o chip nunca pede
+   senha, só sinaliza. */
+.df-browser-session {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--df-font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 9px 2px 3px;
+  border: 2px solid var(--df-ink);
+  border-radius: 999px;
+  background: var(--df-bg);
+  color: var(--df-ink);
+  box-shadow: 2px 2px 0 var(--df-ink);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: transform var(--df-motion-fast) var(--df-motion-ease),
+              box-shadow var(--df-motion-fast) var(--df-motion-ease);
+}
+.df-browser-session:hover { transform: translate(-1px, -1px); box-shadow: 0 3px 0 var(--df-ink); }
+.df-browser-session__dot {
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--df-ink);
+  border-radius: 2px;
+  background: var(--df-dim);
+}
+.df-browser-session--active { background: var(--df-secondary); }
+.df-browser-session--otp    { background: var(--df-warn); }
+.df-browser-session--broken { background: var(--df-tertiary); color: var(--df-ink); }
+.df-browser-session--active .df-browser-session__dot { background: var(--df-ink); }
+.df-browser-session--otp .df-browser-session__dot    { background: var(--df-ink); animation: df-sess-blink var(--df-motion-pulse) infinite var(--df-motion-ease-step); }
+.df-browser-session--broken .df-browser-session__dot { background: var(--df-ink); }
+@keyframes df-sess-blink {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(1px, 1px); }
+}

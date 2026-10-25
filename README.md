@@ -8,7 +8,9 @@ O agente de operação para donos de loja no **iFood Mercado** — open source (
 - **Catálogo espelhado** — seu catálogo acompanha o fornecedor; o que faltou no atacado sai do ar na hora (menos cancelamento, nota de loja preservada).
 - **Alerta de falta** — falta no fornecedor vira tarefa: repor, substituir ou tirar do ar.
 - **Time de bots em PT-BR** — ofícios de estratégia, radar, operação e revisão, cada um com sua função (persona por loja via perfil).
-- **Interface em português** — o desktop inteiro do fork traduzido (PT-BR de fábrica), com a skin DROPFOOD (neobrutalismo de mercado: café, amarelo de preço bom, verde de entrega).
+- **Interface em português** — o desktop inteiro do fork traduzido (PT-BR de fábrica), com a skin DROPFOOD (neobrutalismo de mercado: cream, pink de ação, mint de sucesso, amarelo de preço bom).
+- **Navegador central operado pelo agente** — o portal iFood no centro da janela, o operador na lateral dirigindo via computer-use nativo (preview-act/drive), com chip de sessão (login manual do dono — regra de ouro).
+- **Atividade visível dos bots** — faixas e cards por bot enquanto trabalham (activity-strip, working-card, step-progress, bot-avatar) e modal de conversa entre bots (bot-chat-modal, handoff-timeline) — biblioteca de componentes em `components/`.
 
 ## Para quem é
 

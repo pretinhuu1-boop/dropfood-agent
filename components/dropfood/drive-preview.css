@@ -1,0 +1,75 @@
+/* drive-preview — barra de navegação do navegador central (Zona A, D9).
+   Wrapper do preview-pane nativo do Hermes (preview-act/drive): URL,
+   estado de carregamento, botões voltar/recarregar e chip de sessão
+   (browser-session). O agente comanda esta barra via preview-act. */
+.df-drive {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 2px solid var(--df-ink);
+  border-bottom-width: 0;
+  border-radius: var(--df-radius) var(--df-radius) 0 0;
+  background: var(--df-paper);
+  box-shadow: var(--df-shadow-sm);
+  font-family: var(--df-font);
+  min-width: 0;
+}
+.df-drive__btn {
+  font-family: var(--df-font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 2px solid var(--df-ink);
+  border-radius: 6px;
+  background: var(--df-bg);
+  color: var(--df-ink);
+  width: 26px;
+  height: 24px;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--df-ink);
+  transition: transform var(--df-motion-fast) var(--df-motion-ease),
+              box-shadow var(--df-motion-fast) var(--df-motion-ease);
+  flex: none;
+}
+.df-drive__btn:hover { transform: translate(-1px, -1px); box-shadow: 0 3px 0 var(--df-ink); }
+.df-drive__btn:active { transform: translate(1px, 1px); box-shadow: none; }
+.df-drive__url {
+  flex: 1;
+  min-width: 0;
+  border: 2px solid var(--df-ink);
+  border-radius: 6px;
+  background: var(--df-bg);
+  padding: 3px 8px;
+  font-family: var(--df-font-mono);
+  font-size: 0.68rem;
+  color: var(--df-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.df-drive__url--loading::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 6px;
+  border: 2px solid var(--df-ink);
+  border-radius: 2px;
+  background: var(--df-warn);
+  animation: df-drive-load var(--df-motion-pulse) infinite var(--df-motion-ease-step);
+}
+@keyframes df-drive-load {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(2px, 2px); }
+}
+.df-drive__state {
+  font-family: var(--df-font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--df-dim);
+  white-space: nowrap;
+}
