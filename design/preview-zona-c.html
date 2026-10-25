@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{
+  --df-bg:#fdf9f0; --df-ink:#111111; --df-paper:#fffdf7; --df-dim:rgba(17,17,17,.62);
+  --df-primary:#ff3d81; --df-secondary:#3ddc97; --df-tertiary:#ff6b5e; --df-warn:#ffd23f;
+  --df-lilac:#c8a2ff; --df-brand:#0e9f6e; --df-radius:8px; --df-radius-lg:18px;
+  --df-shadow:4px 4px 0 var(--df-ink); --df-shadow-sm:3px 3px 0 var(--df-ink);
+  --df-font:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --df-font-display:'Archivo Black','Space Grotesk',sans-serif;
+  --df-font-mono:'Space Mono',ui-monospace,monospace;
+  --df-motion-fast:80ms; --df-motion-base:150ms; --df-motion-slow:260ms;
+  --df-motion-step:2px; --df-motion-ease:cubic-bezier(.2,.8,.2,1);
+  --df-motion-ease-step:steps(2,jump-none); --df-motion-pulse:1.1s;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--df-bg);font-family:var(--df-font);color:var(--df-ink);padding:22px;width:780px}
+.tag{display:inline-block;font-family:var(--df-font-mono);font-size:10px;font-weight:700;letter-spacing:.14em;background:var(--df-ink);color:var(--df-bg);padding:3px 8px;margin-bottom:12px}
+h1{font-family:var(--df-font-display);font-size:18px;letter-spacing:-.02em;margin-bottom:4px}
+.sub{font-size:12px;color:var(--df-dim);font-weight:600;margin-bottom:18px}
+
+/* bot-avatar */
+.df-bot-avatar{--ba-bg:var(--df-ink);display:inline-grid;place-items:center;width:24px;height:24px;border:2px solid var(--df-ink);border-radius:6px;background:var(--ba-bg);color:var(--df-ink);font-family:var(--df-font-display);font-size:.62rem;letter-spacing:.02em;box-shadow:var(--df-shadow-sm);flex:none;user-select:none}
+.df-bot-avatar--b1{background:var(--df-primary)} .df-bot-avatar--b2{background:var(--df-secondary)}
+.df-bot-avatar--b6{background:var(--df-lilac)} .df-bot-avatar--b7{background:var(--df-warn)}
+.df-bot-avatar--bt{background:var(--df-warn)} .df-bot-avatar--op{background:var(--df-tertiary)}
+.df-bot-avatar--sm{width:18px;height:18px;font-size:.5rem;border-radius:5px}
+
+/* bot-chat-open */
+.df-bot-chat-open{display:inline-flex;align-items:center;gap:6px;font-family:var(--df-font);font-size:.72rem;font-weight:700;padding:3px 10px 3px 4px;border:2px solid var(--df-ink);border-radius:999px;background:var(--df-paper);box-shadow:var(--df-shadow-sm);cursor:pointer;user-select:none}
+.df-bot-chat-open__avs{display:inline-flex;align-items:center}
+.df-bot-chat-open__avs .df-bot-avatar + .df-bot-avatar{margin-left:-8px}
+.df-bot-chat-open__arrow{font-family:var(--df-font-mono);font-size:.6rem;color:var(--df-dim)}
+
+/* bot-chat-badge */
+.df-bot-chat-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--df-font-mono);font-size:.62rem;font-weight:700;letter-spacing:.06em;padding:2px 8px;border:2px solid var(--df-ink);border-radius:999px;background:var(--df-warn);color:var(--df-ink);box-shadow:var(--df-shadow-sm);cursor:pointer;user-select:none}
+.df-bot-chat-badge__dot{width:6px;height:6px;border-radius:2px;background:var(--df-ink)}
+
+/* modal */
+.df-bot-chat-overlay{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgba(17,17,17,.55);padding:24px}
+.df-bot-chat-modal{display:flex;flex-direction:column;width:min(680px,92vw);max-height:82vh;border:3px solid var(--df-ink);border-radius:18px;background:var(--df-bg);box-shadow:6px 6px 0 rgba(17,17,17,.85);overflow:hidden;animation:df-modal-pop .15s var(--df-motion-ease)}
+@keyframes df-modal-pop{from{transform:translate(0,8px) scale(.98);opacity:0}to{transform:translate(0,0) scale(1);opacity:1}}
+.df-bot-chat-modal__titlebar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--df-ink);color:var(--df-bg)}
+.df-bot-chat-modal__titlebar b{font-family:var(--df-font-display);font-size:.72rem;letter-spacing:.02em;flex:1}
+.df-modal-close{border:2px solid var(--df-bg);background:transparent;color:var(--df-bg);font-family:var(--df-font-mono);font-size:.7rem;font-weight:700;border-radius:6px;padding:1px 8px;cursor:pointer}
+.df-bot-chat-modal__participants{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:2px solid var(--df-ink);background:var(--df-paper)}
+.df-participant{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;border:2px solid var(--df-ink);border-radius:999px;padding:2px 10px 2px 3px;background:var(--df-bg);box-shadow:var(--df-shadow-sm)}
+.df-participant__vs{font-family:var(--df-font-mono);font-size:.6rem;color:var(--df-dim)}
+.df-bot-chat-modal__corridor{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1;overflow:hidden;min-height:0}
+.df-bot-chat-col{display:flex;flex-direction:column;gap:6px;padding:12px;overflow-y:auto;min-width:0}
+.df-bot-chat-col + .df-bot-chat-col{border-left:2px solid var(--df-ink)}
+.df-bot-chat-col__head{display:flex;align-items:center;gap:6px;font-family:var(--df-font-mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--df-dim);border-bottom:1.5px dashed rgba(17,17,17,.35);padding-bottom:5px}
+.df-bot-chat-msg{border:2px solid var(--df-ink);border-radius:8px;background:var(--df-paper);padding:6px 9px;font-size:.74rem;font-weight:600;line-height:1.45;box-shadow:var(--df-shadow-sm)}
+.df-bot-chat-msg__time{font-family:var(--df-font-mono);font-size:.55rem;color:var(--df-dim);display:block;margin-top:3px}
+.df-bot-chat-msg--thinking{background:var(--df-lilac)}
+.df-bot-chat-msg--sent{background:var(--df-warn)}
+.df-bot-chat-modal__foot{display:flex;align-items:center;gap:8px;padding:8px 12px;border-top:2px solid var(--df-ink);background:var(--df-paper);font-family:var(--df-font-mono);font-size:.6rem;color:var(--df-dim)}
+.df-foot-live{color:var(--df-primary);font-weight:700}
+
+/* handoff */
+.df-handoff{display:flex;flex-direction:column;gap:0;font-family:var(--df-font)}
+.df-handoff__item{display:grid;grid-template-columns:18px 1fr;column-gap:8px;position:relative;padding-bottom:14px}
+.df-handoff__item:last-child{padding-bottom:0}
+.df-handoff__item:not(:last-child)::before{content:"";position:absolute;left:7px;top:14px;bottom:0;width:2px;background:var(--df-ink)}
+.df-handoff__dot{width:16px;height:16px;border:2px solid var(--df-ink);border-radius:4px;background:var(--df-ink);box-shadow:2px 2px 0 rgba(17,17,17,.4);margin-top:2px}
+.df-handoff__dot--b1{background:var(--df-primary)} .df-handoff__dot--b2{background:var(--df-secondary)}
+.df-handoff__dot--b6{background:var(--df-lilac)} .df-handoff__dot--b7{background:var(--df-warn)}
+.df-handoff__dot--op{background:var(--df-tertiary)}
+.df-handoff__body b{font-size:.75rem;display:block;line-height:1.3}
+.df-handoff__body p{font-size:.68rem;color:var(--df-dim);font-weight:600;line-height:1.4}
+.df-handoff__time{font-family:var(--df-font-mono);font-size:.55rem;color:var(--df-dim);display:block;margin-top:2px}
+
+/* cena */
+.sec{margin-bottom:24px}
+.sec h2{font-family:var(--df-font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--df-dim);border-bottom:2px solid var(--df-ink);padding-bottom:5px;margin-bottom:12px}
+.cena{border:2px solid var(--df-ink);border-radius:16px;background:var(--df-paper);box-shadow:5px 5px 0 var(--df-ink);padding:14px;min-height:420px;position:relative}
+.msg-notice{font-size:11px;font-weight:600;border:2px solid var(--df-ink);border-radius:8px;padding:6px 9px;background:#fff;display:inline-block;box-shadow:2px 2px 0 var(--df-ink);margin-bottom:10px;position:relative;z-index:2}
+.msg-notice .mini{display:block;font-family:var(--df-font-mono);font-size:8px;letter-spacing:.14em;color:var(--df-dim);margin-bottom:3px}
+.rail{width:120px;border:2px solid var(--df-ink);border-radius:10px;background:var(--df-bg);padding:8px;display:flex;flex-direction:column;gap:6px;box-shadow:3px 3px 0 var(--df-ink)}
+.rail b{font-family:var(--df-font-mono);font-size:8px;letter-spacing:.16em;color:var(--df-dim)}
+.botrow{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;padding:3px 5px;border:1.5px solid var(--df-ink);border-radius:6px;background:#fff}
+.mock-row{display:flex;gap:14px;margin-top:14px}
+</style>
+</head>
+<body>
+<span class="tag">ZONA C — COMPONENTES NOVOS · conversa entre bots (D2: abre por clique)</span>
+<h1>Modal de conversa entre bots</h1>
+<div class="sub">bot-chat-open · bot-chat-badge · bot-chat-modal (corredor 2 colunas) · handoff-timeline</div>
+
+<div class="sec">
+  <h2>① gatilhos — chip de abertura + badge (nunca abre sozinho, D2)</h2>
+  <div style="display:flex;gap:14px;align-items:center">
+    <button class="df-bot-chat-open" type="button">
+      <span class="df-bot-chat-open__avs"><span class="df-bot-avatar df-bot-avatar--b2 df-bot-avatar--sm">B2</span><span class="df-bot-avatar df-bot-avatar--b7 df-bot-avatar--sm">B7</span></span>
+      <span class="df-bot-chat-open__arrow">⇄</span>
+      conversa B2 ⇄ B7
+    </button>
+    <button class="df-bot-chat-badge" type="button"><span class="df-bot-chat-badge__dot"></span>2 bots conversando</button>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>② modal aberto — corredor b2 (radar) ⇄ b7 (controle)</h2>
+  <div class="cena">
+    <div class="mock-row">
+      <div class="rail">
+        <b>BOTS</b>
+        <div class="botrow"><span class="df-bot-avatar df-bot-avatar--b1 df-bot-avatar--sm">B1</span>b1 estrategista</div>
+        <div class="botrow" style="background:var(--df-secondary)"><span class="df-bot-avatar df-bot-avatar--b2 df-bot-avatar--sm">B2</span>b2 radar</div>
+        <div class="botrow"><span class="df-bot-avatar df-bot-avatar--b6 df-bot-avatar--sm">B6</span>b6 revisor</div>
+        <div class="botrow" style="background:var(--df-warn)"><span class="df-bot-avatar df-bot-avatar--b7 df-bot-avatar--sm">B7</span>b7 controle</div>
+        <div class="botrow"><span class="df-bot-avatar df-bot-avatar--op df-bot-avatar--sm">OP</span>operador</div>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div class="msg-notice" style="margin-bottom:14px"><span class="mini">MENSAGEM INTER-BOT NO THREAD</span>
+          Message from 🤖 b2 → b7: vitrine varrida, 3 desvios. <button class="df-bot-chat-open" type="button" style="vertical-align:middle;margin-left:8px"><span class="df-bot-chat-open__avs"><span class="df-bot-avatar df-bot-avatar--b2 df-bot-avatar--sm">B2</span><span class="df-bot-avatar df-bot-avatar--b7 df-bot-avatar--sm">B7</span></span><span class="df-bot-chat-open__arrow">⇄</span>conversa B2 ⇄ B7</button>
+        </div>
+      </div>
+    </div>
+    <div class="df-bot-chat-overlay" style="position:absolute;z-index:10;background:rgba(17,17,17,.4);padding:0">
+      <div class="df-bot-chat-modal" style="max-height:340px">
+        <div class="df-bot-chat-modal__titlebar"><b>Conversa entre bots</b><button class="df-modal-close" type="button">fechar ✕</button></div>
+        <div class="df-bot-chat-modal__participants">
+          <span class="df-participant"><span class="df-bot-avatar df-bot-avatar--b2 df-bot-avatar--sm">B2</span> B2 · radar</span>
+          <span class="df-participant__vs">⇄</span>
+          <span class="df-participant"><span class="df-bot-avatar df-bot-avatar--b7 df-bot-avatar--sm">B7</span> B7 · controle</span>
+        </div>
+        <div class="df-bot-chat-modal__corridor">
+          <div class="df-bot-chat-col">
+            <div class="df-bot-chat-col__head">B2</div>
+            <div class="df-bot-chat-msg df-bot-chat-msg--sent">Radar 7h concluído: 3 desvios na vitrine.<span class="df-bot-chat-msg__time">14:02</span></div>
+            <div class="df-bot-chat-msg">Cerveja R$ 3,49 na concorrente (venda nossa 3,99).<span class="df-bot-chat-msg__time">14:03</span></div>
+            <div class="df-bot-chat-msg df-bot-chat-msg--thinking">Aplicando ajuste→ 3,29 (margem 47% OK).<span class="df-bot-chat-msg__time">14:04</span></div>
+          </div>
+          <div class="df-bot-chat-col">
+            <div class="df-bot-chat-col__head">B7</div>
+            <div class="df-bot-chat-msg">Recebido. Validando regra de faixa…<span class="df-bot-chat-msg__time">14:02</span></div>
+            <div class="df-bot-chat-msg df-bot-chat-msg--thinking">Faixa bebidas: bom &lt;40% — 47% ok p/ DESCE.<span class="df-bot-chat-msg__time">14:03</span></div>
+            <div class="df-bot-chat-msg df-bot-chat-msg--sent">Aprovado. Registra no radar.json e segue.<span class="df-bot-chat-msg__time">14:04</span></div>
+          </div>
+        </div>
+        <div class="df-bot-chat-modal__foot"><span class="df-foot-live">● ao vivo</span><span>pipeline: hermes -p b2 chat -q "Message from…"</span><button class="df-modal-close" style="margin-left:auto;border:2px solid var(--df-ink);color:var(--df-ink);background:var(--df-bg)" type="button">ver no thread ↗</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>③ handoff-timeline — gates da mesma conversa</h2>
+  <div class="df-handoff" style="max-width:340px">
+    <div class="df-handoff__item">
+      <span class="df-handoff__dot df-handoff__dot--b2"></span>
+      <div class="df-handoff__body"><b>B2 varreu a vitrine</b><p>7 concorrentes · 3 desvios achados</p><span class="df-handoff__time">14:01</span></div>
+    </div>
+    <div class="df-handoff__item">
+      <span class="df-handoff__dot df-handoff__dot--b7"></span>
+      <div class="df-handoff__body"><b>B7 recebeu e validou</b><p>faixa bebidas: bom &lt;40%</p><span class="df-handoff__time">14:03</span></div>
+    </div>
+    <div class="df-handoff__item">
+      <span class="df-handoff__dot df-handoff__dot--b7"></span>
+      <div class="df-handoff__body"><b>B7 aprovou o ajuste</b><p>DESCE 3,29 com margem 47%</p><span class="df-handoff__time">14:04</span></div>
+    </div>
+    <div class="df-handoff__item">
+      <span class="df-handoff__dot df-handoff__dot--op"></span>
+      <div class="df-handoff__body"><b>Operador aplicou</b><p>radar.json atualizado · próximo ciclo 7h</p><span class="df-handoff__time">14:05</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

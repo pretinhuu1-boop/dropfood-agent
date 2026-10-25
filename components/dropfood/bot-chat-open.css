@@ -1,0 +1,43 @@
+/* bot-chat-open — chip de abertura do modal de conversa entre bots (D2).
+   Mostra os avatares dos participantes + "conversa bX ⇄ bY". Ação = onClick
+   abre o bot-chat-modal. Neobrutal: borda 2px ink, fundo paper, sombra dura. */
+.df-bot-chat-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--df-font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px 3px 4px;
+  border: 2px solid var(--df-ink);
+  border-radius: 999px;
+  background: var(--df-paper);
+  color: var(--df-ink);
+  box-shadow: var(--df-shadow-sm);
+  cursor: pointer;
+  transition: transform var(--df-motion-fast) var(--df-motion-ease),
+              box-shadow var(--df-motion-fast) var(--df-motion-ease);
+  user-select: none;
+}
+.df-bot-chat-open:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 0 5px 0 var(--df-ink);
+}
+.df-bot-chat-open:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+.df-bot-chat-open__avs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+/* avatares sobrepostos (segundo aparece por cima do primeiro) */
+.df-bot-chat-open__avs .df-bot-avatar + .df-bot-avatar {
+  margin-left: -8px;
+}
+.df-bot-chat-open__arrow {
+  font-family: var(--df-font-mono);
+  font-size: 0.6rem;
+  color: var(--df-dim);
+}

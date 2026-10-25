@@ -1,0 +1,60 @@
+/* handoff-timeline — linha do tempo dos gates/handoffs entre bots.
+   Vertical: dot (cor do bot) + linha ink + título + descrição + hora.
+   Colapsa para a mesma linguagem dos outros componentes (2px, sombra). */
+.df-handoff {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--df-font);
+}
+.df-handoff__item {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  column-gap: 8px;
+  position: relative;
+  padding-bottom: 14px;
+}
+.df-handoff__item:last-child { padding-bottom: 0; }
+/* linha vertical ligando os dots */
+.df-handoff__item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 14px;
+  bottom: 0;
+  width: 2px;
+  background: var(--df-ink);
+}
+.df-handoff__dot {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--df-ink);
+  border-radius: 4px;
+  background: var(--df-ink);
+  box-shadow: 2px 2px 0 rgba(17, 17, 17, 0.4);
+  margin-top: 2px;
+}
+.df-handoff__dot--b1 { background: var(--df-primary); }
+.df-handoff__dot--b2 { background: var(--df-secondary); }
+.df-handoff__dot--b6 { background: var(--df-lilac); }
+.df-handoff__dot--b7 { background: var(--df-warn); }
+.df-handoff__dot--bt { background: var(--df-warn); }
+.df-handoff__dot--op { background: var(--df-tertiary); }
+.df-handoff__body b {
+  font-size: 0.75rem;
+  display: block;
+  line-height: 1.3;
+}
+.df-handoff__body p {
+  font-size: 0.68rem;
+  color: var(--df-dim);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.df-handoff__time {
+  font-family: var(--df-font-mono);
+  font-size: 0.55rem;
+  color: var(--df-dim);
+  display: block;
+  margin-top: 2px;
+}

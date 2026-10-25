@@ -1,0 +1,41 @@
+/* bot-chat-badge — badge discreto "2 bots conversando" (D2: sinal sem abrir).
+   Aparece no rail de perfis / junto do thread quando há mensagem inter-bot
+   não aberta. Fundo canary (atenção leve), contador em ink. */
+.df-bot-chat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--df-font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border: 2px solid var(--df-ink);
+  border-radius: 999px;
+  background: var(--df-warn);
+  color: var(--df-ink);
+  box-shadow: var(--df-shadow-sm);
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--df-motion-fast) var(--df-motion-ease),
+              box-shadow var(--df-motion-fast) var(--df-motion-ease);
+}
+.df-bot-chat-badge:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 0 4px 0 var(--df-ink);
+}
+.df-bot-chat-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--df-ink);
+}
+.df-bot-chat-badge__dot--x2::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--df-ink);
+  margin-left: 2px;
+}

@@ -1,0 +1,164 @@
+/* bot-chat-modal — modal de conversa entre bots (Zona C).
+   Corredor 2 colunas: cada bot numa coluna com avatar+cor; mensagens em
+   cronologia paralela; handoff-timeline opcional na base. Overlay cream
+   translúcido; janela neobrutal border 3px ink, sombra 6px. */
+.df-bot-chat-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 17, 17, 0.55);   /* ink translúcido — foco na janela */
+  padding: 24px;
+}
+.df-bot-chat-modal {
+  display: flex;
+  flex-direction: column;
+  width: min(680px, 92vw);
+  max-height: 82vh;
+  border: 3px solid var(--df-ink);
+  border-radius: var(--df-radius-lg);
+  background: var(--df-bg);
+  box-shadow: 6px 6px 0 rgba(17, 17, 17, 0.85);
+  font-family: var(--df-font);
+  color: var(--df-ink);
+  overflow: hidden;
+  animation: df-modal-pop var(--df-motion-base) var(--df-motion-ease);
+}
+@keyframes df-modal-pop {
+  from { transform: translate(0, 8px) scale(0.98); opacity: 0; }
+  to   { transform: translate(0, 0) scale(1); opacity: 1; }
+}
+
+.df-bot-chat-modal__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--df-ink);
+  color: var(--df-bg);
+}
+.df-bot-chat-modal__titlebar b {
+  font-family: var(--df-font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+.df-bot-chat-modal__titlebar .df-modal-close {
+  border: 2px solid var(--df-bg);
+  background: transparent;
+  color: var(--df-bg);
+  font-family: var(--df-font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 1px 8px;
+  cursor: pointer;
+}
+.df-bot-chat-modal__titlebar .df-modal-close:hover {
+  background: var(--df-primary);
+  color: var(--df-bg);
+  border-color: var(--df-primary);
+}
+
+/* participantes — chip dos 2 bots no header */
+.df-bot-chat-modal__participants {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--df-ink);
+  background: var(--df-paper);
+}
+.df-participant {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 2px solid var(--df-ink);
+  border-radius: 999px;
+  padding: 2px 10px 2px 3px;
+  background: var(--df-bg);
+  box-shadow: var(--df-shadow-sm);
+}
+.df-participant__vs {
+  font-family: var(--df-font-mono);
+  font-size: 0.6rem;
+  color: var(--df-dim);
+}
+
+/* corredor 2 colunas */
+.df-bot-chat-modal__corridor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+.df-bot-chat-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  overflow-y: auto;
+  min-width: 0;
+}
+.df-bot-chat-col + .df-bot-chat-col {
+  border-left: 2px solid var(--df-ink);
+}
+.df-bot-chat-col__head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--df-font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--df-dim);
+  border-bottom: 1.5px dashed rgba(17, 17, 17, 0.35);
+  padding-bottom: 5px;
+  margin-bottom: 2px;
+}
+.df-bot-chat-msg {
+  border: 2px solid var(--df-ink);
+  border-radius: var(--df-radius);
+  background: var(--df-paper);
+  padding: 6px 9px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.45;
+  box-shadow: var(--df-shadow-sm);
+  animation: df-modal-pop var(--df-motion-base) var(--df-motion-ease);
+}
+.df-bot-chat-msg__time {
+  font-family: var(--df-font-mono);
+  font-size: 0.55rem;
+  color: var(--df-dim);
+  display: block;
+  margin-top: 3px;
+}
+.df-bot-chat-msg--thinking {
+  background: var(--df-lilac);
+}
+.df-bot-chat-msg--sent {
+  background: var(--df-warn);
+}
+
+.df-bot-chat-modal__foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 2px solid var(--df-ink);
+  background: var(--df-paper);
+  font-family: var(--df-font-mono);
+  font-size: 0.6rem;
+  color: var(--df-dim);
+}
+.df-bot-chat-modal__foot .df-foot-live {
+  color: var(--df-primary);
+  font-weight: 700;
+}
