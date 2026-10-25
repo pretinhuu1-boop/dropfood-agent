@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>DROPFOOD — fluxograma da janela F1</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{
+  --bg:#fdf9f0; --ink:#111111; --paper:#fffdf7; --dim:rgba(17,17,17,.62);
+  --pink:#ff3d81; --mint:#3ddc97; --canary:#ffd23f; --lilac:#c8a2ff; --coral:#ff6b5e;
+  --brand:#0e9f6e; --r:8px; --sh:4px 4px 0 var(--ink);
+  --font:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --display:'Archivo Black','Space Grotesk',sans-serif;
+  --mono:'Space Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:var(--font);color:var(--ink);padding:22px;width:980px}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;background:var(--ink);color:var(--bg);padding:3px 8px;margin-bottom:12px}
+h1{font-family:var(--display);font-size:20px;letter-spacing:-.02em;margin-bottom:4px}
+.sub{font-size:12px;color:var(--dim);font-weight:600;margin-bottom:16px}
+.sub b{color:var(--ink);background:var(--canary);padding:0 6px;border:1.5px solid var(--ink);border-radius:4px}
+
+/* ── janela do app ─────────────────────────────── */
+.win{border:3px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:6px 6px 0 var(--ink);background:var(--bg)}
+.titlebar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:3px solid var(--ink);background:var(--paper)}
+.dotw{width:10px;height:10px;border-radius:99px;border:2px solid var(--ink)}
+.dt1{background:var(--coral)} .dt2{background:var(--canary)} .dt3{background:var(--mint)}
+.titlebar b{font-family:var(--display);font-size:11px;letter-spacing:.02em}
+.titlebar .sp{flex:1}
+.badge{padding:2px 8px;border:2px solid var(--ink);border-radius:999px;font-family:var(--mono);font-size:8px;font-weight:700;background:var(--mint);box-shadow:2px 2px 0 var(--ink)}
+.row{display:grid;grid-template-columns:170px 1fr 220px;min-height:380px}
+
+/* sidebar nativa */
+.side{padding:12px;border-right:3px solid var(--ink);background:var(--ink);color:var(--bg);font-size:9.5px}
+.side h3{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:var(--canary);margin:10px 0 6px}
+.side h3:first-child{margin-top:0}
+.side .item{display:flex;align-items:center;gap:6px;padding:3px 0;font-weight:600}
+.side .item::before{content:"";width:5px;height:5px;background:var(--mint);box-shadow:1.5px 1.5px 0 rgba(0,0,0,.5)}
+.side .item .n{color:rgba(253,249,240,.45)}
+.side .keep{margin-top:12px;border:2px solid var(--canary);border-radius:8px;padding:8px;background:rgba(255,210,63,.08)}
+.side .keep b{font-family:var(--mono);font-size:8px;color:var(--canary);letter-spacing:.1em}
+.side .keep p{font-size:9px;color:rgba(253,249,240,.8);margin-top:3px;line-height:1.5}
+
+/* navegador central */
+.browser{display:flex;flex-direction:column;background:var(--paper);border-right:3px solid var(--ink)}
+.urlbar{display:flex;align-items:center;gap:6px;padding:6px 8px;border-bottom:2px solid var(--ink);background:var(--bg)}
+.urlbar .lock{width:8px;height:8px;border-radius:3px;background:var(--mint);border:1.5px solid var(--ink)}
+.urlbar .u{flex:1;border:2px solid var(--ink);border-radius:6px;background:#fff;padding:2px 8px;font-family:var(--mono);font-size:9px}
+.screen{flex:1;padding:10px;display:flex;flex-direction:column;gap:8px;position:relative}
+.screen .m{position:absolute;top:8px;right:8px;z-index:3;display:flex;align-items:center;gap:4px;background:var(--lilac);border:2px solid var(--ink);border-radius:6px;padding:2px 6px;font-family:var(--mono);font-size:7.5px;font-weight:700;box-shadow:2px 2px 0 var(--ink)}
+.pcard{border:2px solid var(--ink);border-radius:8px;background:#fff;padding:8px 10px;display:flex;align-items:center;gap:10px;box-shadow:3px 3px 0 var(--ink)}
+.pthumb{width:34px;height:34px;border:2px solid var(--ink);border-radius:6px;background:var(--canary);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:14px;color:var(--ink)}
+.pinfo{flex:1}
+.pinfo b{font-size:10.5px;display:block}
+.pinfo i{font-size:8.5px;color:var(--dim);font-style:normal}
+.price{font-family:var(--mono);font-weight:700;font-size:13px;border:2px solid var(--ink);border-radius:6px;padding:3px 8px;background:var(--mint);box-shadow:2px 2px 0 var(--ink)}
+.banner{margin-top:auto;border:2px solid var(--ink);border-radius:8px;background:var(--canary);padding:6px 8px;font-size:9px;font-weight:700;box-shadow:3px 3px 0 var(--ink)}
+
+/* agente lateral */
+.agent{display:flex;flex-direction:column;background:var(--paper)}
+.agent .ah{padding:10px;border-bottom:2px solid var(--ink);background:var(--pink);color:var(--bg)}
+.agent .ah b{font-family:var(--display);font-size:11px}
+.agent .ah small{display:block;font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;color:rgba(253,249,240,.85)}
+.msgs{padding:10px;display:flex;flex-direction:column;gap:7px;flex:1}
+.bub{border:2px solid var(--ink);border-radius:8px;padding:6px 8px;font-size:9.5px;font-weight:600;line-height:1.45;box-shadow:2px 2px 0 var(--ink)}
+.bub.dono{background:var(--canary);align-self:flex-end;max-width:85%}
+.bub.ag{background:#fff;align-self:flex-start;max-width:92%}
+.bub .tool{display:block;font-family:var(--mono);font-size:7.5px;color:var(--brand);margin:3px 0 1px}
+.tools{display:flex;flex-wrap:wrap;gap:4px;padding:0 10px 6px}
+.tchip{font-family:var(--mono);font-size:7.5px;font-weight:700;border:1.5px solid var(--ink);border-radius:999px;padding:2px 7px;background:var(--bg)}
+.tchip.cu{background:var(--lilac)}
+.bots{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:8px 10px;border-top:2px solid var(--ink);background:var(--bg)}
+.bot{border:1.5px solid var(--ink);border-radius:6px;padding:3px 6px;font-size:8px;font-weight:700;display:flex;align-items:center;gap:5px}
+.bot::before{content:"";width:5px;height:5px;border-radius:99px;background:var(--mint);border:1px solid var(--ink)}
+.hint{display:flex;align-items:center;gap:6px;padding:6px 10px;border-top:2px solid var(--ink);background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:8px}
+.hint .l{z-index:2;background:var(--lilac);color:var(--ink);border:1.5px solid var(--ink);border-radius:5px;padding:1px 6px;font-weight:700}
+
+/* statusbar */
+.status{display:flex;gap:16px;padding:7px 12px;background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;border-top:3px solid var(--ink)}
+.status b{color:var(--canary)}
+.pill-ok{color:var(--mint)} .pill-warn{color:var(--canary)} .pill-man{color:var(--lilac)}
+
+/* ── fluxo de operação ─────────────────────────── */
+.flow{margin-top:22px;border:3px solid var(--ink);border-radius:18px;background:var(--bg);padding:16px;box-shadow:6px 6px 0 var(--ink)}
+.flow h2{font-family:var(--display);font-size:14px;margin-bottom:12px}
+.flow h2 small{font-family:var(--mono);font-size:8px;color:var(--dim);letter-spacing:.1em}
+.steps{display:flex;align-items:stretch;gap:0}
+.st{flex:1;border:2px solid var(--ink);border-radius:10px;padding:10px;position:relative;min-height:120px}
+.st .num{position:absolute;top:-11px;left:10px;width:20px;height:20px;border:2px solid var(--ink);border-radius:99px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:10px;background:var(--bg)}
+.st b{font-family:var(--mono);font-size:9px;letter-spacing:.12em;display:block;margin:6px 0 4px}
+.st p{font-size:9px;line-height:1.5;color:var(--dim);font-weight:600}
+.st p b{font-family:var(--font);font-size:9px;color:var(--ink);letter-spacing:0;display:inline}
+.s1{background:var(--canary)} .s2{background:var(--pink);color:#fff}
+.s2 p,.s2 p b{color:rgba(253,249,240,.9)} .s2 p b{color:#fff}
+.s3{background:var(--lilac)} .s4{background:var(--mint)} .s5{background:#fff} .s6{background:var(--ink);color:var(--bg)}
+.s6 p,.s6 p b{color:rgba(253,249,240,.85)} .s6 p b{color:var(--canary)}
+.arrow{display:flex;align-items:center;font-family:var(--display);font-size:16px;padding:0 6px}
+.note{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.note span{border:2px solid var(--ink);border-radius:8px;padding:4px 10px;font-size:9.5px;font-weight:700;background:var(--paper);box-shadow:2px 2px 0 var(--ink)}
+.note .k{background:var(--mint)}
+</style>
+</head>
+<body>
+<span class="tag">FLUXOGRAMA F1 · visão do dono 25/10 — o Hermes desktop EXISTENTE é a base · nada se perde</span>
+<h1>Janela DROPFOOD = Hermes desktop adaptado</h1>
+<div class="sub">O app que já existe continua 100% — <b>só ganha pele (skin dropfood)</b> + navegador real no centro + agente na lateral operando ele com ❰computer-use❱. Bots e ferramentas são os mesmos do Hermes.</div>
+
+<div class="win">
+  <div class="titlebar">
+    <div class="dotw dt1"></div><div class="dotw dt2"></div><div class="dotw dt3"></div>
+    <b>DROPFOOD — Hermes desktop (fork core d0509566)</b><span class="sp"></span>
+    <span class="badge">skin dropfood ativa</span>
+  </div>
+  <div class="row">
+    <!-- sidebar nativa -->
+    <div class="side">
+      <h3>HERMES · INTOCADO</h3>
+      <div class="item">Bot mode <span class="n">(nativo)</span></div>
+      <div class="item">Kanban / tasks</div>
+      <div class="item">Cron + gateway</div>
+      <div class="item">MCP servers <span class="n">(dropfood_components, ifood)</span></div>
+      <div class="item">Plugin SDK</div>
+      <div class="item">Skills <span class="n">(computer-use, dropfood-ops…)</span></div>
+      <div class="item">Skins / locales pt</div>
+      <div class="item">Backup D6 (GitHub)</div>
+      <div class="item">Histórico / sessões</div>
+      <div class="keep"><b>NADA É REESCRITO</b><p>Tudo que o Hermes já tem continua existindo do mesmo jeito — a camada DROPFOOD se adapta à UI existente, nunca substitui.</p></div>
+    </div>
+    <!-- navegador -->
+    <div class="browser">
+      <div class="urlbar"><div class="lock"></div><span class="u">portal.ifood.com.br/mercado</span><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">▼</span></div>
+      <div class="screen">
+        <div class="m">⇱ computer-use dirige</div>
+        <div class="pcard">
+          <div class="pthumb">C</div>
+          <div class="pinfo"><b>Cerveja Lata 350ml</b><i>loja concorrente · Mini Mercado…</i></div>
+          <div class="price">R$ 3,49</div>
+        </div>
+        <div class="pcard">
+          <div class="pthumb" style="background:var(--lilac)">R</div>
+          <div class="pinfo"><b>Refrigerante 2L</b><i>busca · entregas em ~35min</i></div>
+          <div class="price">R$ 6,99</div>
+        </div>
+        <div class="banner">portal real, sessão do dono (login manual 1x — regra de ouro)</div>
+      </div>
+    </div>
+    <!-- agente lateral -->
+    <div class="agent">
+      <div class="ah"><b>Operador DROPFOOD</b><small>agente lateral · comanda o navegador</small></div>
+      <div class="msgs">
+        <div class="bub dono">roda o radar e olha o preço da concorrente</div>
+        <div class="bub ag">abri o portal e vou conferir a vitrine do concorrente…<span class="tool">⟶ computer_use.click(🖱 card)</span><span class="tool">⟶ computer_use.read_screen(📖)</span>achou: R$ 3,49 na loja X</div>
+        <div class="bub dono">boa, ajusta então</div>
+        <div class="bub ag">√ preço novo aplicado no catálogo (radar.json) — próximo ciclo em 7h</div>
+      </div>
+      <div class="tools"><span class="tchip cu">computer-use</span><span class="tchip">radar_precos.py</span><span class="tchip">espelho.py</span><span class="tchip">portal_monitor.py</span><span class="tchip">f0_paridade.py</span></div>
+      <div class="bots">
+        <div class="bot">b1 estrategista</div><div class="bot">b2 radar</div>
+        <div class="bot">b6 revisor</div><div class="bot">b7 controle</div>
+        <div class="bot">bt treinador</div><div class="bot">operador</div>
+      </div>
+      <div class="hint"><span class="l">AGENTE → COMPUTER-USE</span> skills · MCP · tools — exatamente como no Hermes</div>
+    </div>
+  </div>
+  <div class="status">
+    <span>PORTAL <b class="pill-ok">sessão ativa</b></span>
+    <span>RADAR 7h <b class="pill-ok">OK</b></span>
+    <span>OTP <b class="pill-man">manual (dono)</b></span>
+    <span>core <b>d0509566</b></span>
+    <span style="margin-left:auto">cream/ink/pink/mint · Archivo Black</span>
+  </div>
+</div>
+
+<div class="flow">
+  <h2>Fluxo de operação <small>· computer-use dirige o navegador central · bots nativos seguem</small></h2>
+  <div class="steps">
+    <div class="st s1"><div class="num">1</div><b>DONO</b><p>pede no chat da lateral: <b>"roda o radar"</b>, <b>"confere o concorrente"</b></p></div>
+    <div class="arrow">▶</div>
+    <div class="st s2"><div class="num">2</div><b>AGENTE</b><p>decide o passo e chama a skill <b>computer-use</b> (comandos: click, type, read_screen, navigate)</p></div>
+    <div class="arrow">▶</div>
+    <div class="st s3"><div class="num">3</div><b>NAVEGADOR</b><p><b>computer-use</b> opera a tela do portal que está no centro — vê o que o dono vê</p></div>
+    <div class="arrow">▶</div>
+    <div class="st s4"><div class="num">4</div><b>PORTAL iFOOD</b><p>responde na tela real (sessão do dono): preço de vitrine, estoque, pedidos</p></div>
+    <div class="arrow">▶</div>
+    <div class="st s5"><div class="num">5</div><b>DADOS</b><p>agente lê a tela e registra: <b>radar.json · espelho · portal_status</b> (perfil da loja)</p></div>
+    <div class="arrow">▶</div>
+    <div class="st s6"><div class="num">6</div><b>BOTS + DONO</b><p><b>b1-b7</b> seguem as rotinas nativas (7h, backup, QA) e o dono recebe o veredito no chat</p></div>
+  </div>
+  <div class="note">
+    <span class="k">✓ tudo que já existe continua</span>
+    <span>✓ navegador central = portal real</span>
+    <span>✓ agente lateral = chat + computer-use</span>
+    <span>✓ bots/hermes nativos intactos</span>
+    <span>✓ login manual do dono (1x)</span>
+  </div>
+</div>
+</body>
+</html>

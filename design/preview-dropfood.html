@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{
+  --df-bg:#fdf9f0; --df-ink:#111111; --df-paper:#fffdf7; --df-dim:rgba(17,17,17,.62);
+  --df-primary:#ff3d81; --df-secondary:#3ddc97; --df-tertiary:#ff6b5e; --df-warn:#ffd23f;
+  --df-lilac:#c8a2ff; --df-brand:#0e9f6e; --df-radius:8px; --df-radius-lg:18px;
+  --df-shadow:4px 4px 0 var(--df-ink); --df-shadow-sm:3px 3px 0 var(--df-ink);
+  --df-font:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --df-font-display:'Archivo Black','Space Grotesk',sans-serif;
+  --df-font-mono:'Space Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--df-bg);font-family:var(--df-font);color:var(--df-ink);padding:20px;width:760px}
+.tag{display:inline-block;font-family:var(--df-font-mono);font-size:10px;font-weight:700;letter-spacing:.14em;background:var(--df-ink);color:var(--df-bg);padding:3px 8px;margin-bottom:10px}
+.win{display:grid;grid-template-columns:200px 1fr;border:2px solid var(--df-ink);border-radius:var(--df-radius-lg);overflow:hidden;box-shadow:6px 6px 0 var(--df-ink)}
+
+/* SIDEBAR */
+.side{background:var(--df-ink);color:var(--df-bg);padding:16px 12px;display:flex;flex-direction:column;gap:14px}
+.side .logo{display:flex;align-items:center;gap:8px;padding-bottom:12px;border-bottom:2px solid rgba(253,249,240,.2)}
+.logo .d{width:30px;height:30px;background:var(--df-primary);border-radius:var(--df-radius);display:flex;align-items:center;justify-content:center;font-family:var(--df-font-display);font-size:16px;color:var(--df-bg);box-shadow:2px 2px 0 var(--df-warn)}
+.logo b{font-family:var(--df-font-display);font-size:13px;letter-spacing:-.02em}
+.logo small{display:block;font-family:var(--df-font-mono);font-size:8px;letter-spacing:.3em;color:var(--df-secondary)}
+.nv{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600}
+.nv div{padding:6px 8px;border-radius:6px;cursor:default}
+.nv .on{background:var(--df-primary);color:var(--df-bg);box-shadow:2px 2px 0 var(--df-warn)}
+.nv .off{color:rgba(253,249,240,.55)}
+.nv .off:hover{background:rgba(253,249,240,.08)}
+.side .box{background:rgba(253,249,240,.06);border:1.5px solid rgba(253,249,240,.25);border-radius:var(--df-radius);padding:10px;font-size:11px}
+.box b{font-family:var(--df-font-mono);font-size:9px;letter-spacing:.12em;color:var(--df-warn)}
+.chip{display:inline-block;font-family:var(--df-font-mono);font-size:9px;padding:2px 6px;border-radius:999px;border:1.5px solid rgba(253,249,240,.5);margin-top:6px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:99px;background:var(--df-secondary);margin-right:5px;box-shadow:1.5px 1.5px 0 rgba(0,0,0,.4)}
+.dot.red{background:var(--df-tertiary)} .dot.yel{background:var(--df-warn)}
+
+/* CHAT */
+.main{display:flex;flex-direction:column;background:var(--df-bg)}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:2px solid var(--df-ink);background:var(--df-paper)}
+.hdr b{font-family:var(--df-font-display);font-size:12px}
+.hdr small{font-family:var(--df-font-mono);font-size:9px;color:var(--df-dim)}
+.badge{padding:3px 8px;border:2px solid var(--df-ink);border-radius:999px;font-size:10px;font-weight:700;background:var(--df-secondary);box-shadow:2px 2px 0 var(--df-ink)}
+.msgs{display:flex;flex-direction:column;gap:12px;padding:14px}
+.m{max-width:78%;padding:10px 12px;border:2px solid var(--df-ink);border-radius:var(--df-radius)} 
+.m.op{background:var(--df-paper);box-shadow:var(--df-shadow);align-self:flex-start}
+.m.op::before{content:"● OPERADOR";display:block;font-family:var(--df-font-mono);font-size:8px;letter-spacing:.18em;color:var(--df-primary);margin-bottom:5px}
+.m.me{background:var(--df-ink);color:var(--df-bg);align-self:flex-end;box-shadow:var(--df-shadow)}
+.m p{font-size:12px;line-height:1.5;font-weight:500}
+.m table{width:100%;border-collapse:collapse;margin-top:8px;font-size:11px}
+.m td{border:1.5px solid var(--df-ink);padding:4px 6px;font-weight:600}
+.m.op td:first-child{color:var(--df-dim)}
+.ok{color:var(--df-brand);font-weight:700}.down{color:var(--df-tertiary);font-weight:700}
+.pill{display:inline-block;font-family:var(--df-font-mono);font-size:8px;font-weight:700;padding:1px 6px;border:1.5px solid var(--df-ink);border-radius:999px;margin-left:4px}
+.p-desc{background:var(--df-warn)} .p-man{background:var(--df-lilac)} .p-tira{background:var(--df-tertiary);color:var(--df-bg)}
+.composer{display:flex;gap:8px;padding:12px 14px;border-top:2px solid var(--df-ink);background:var(--df-paper)}
+.composer span{flex:1;border:2px solid var(--df-ink);border-radius:var(--df-radius);background:var(--df-bg);padding:8px 10px;font-size:12px;color:var(--df-dim);box-shadow:var(--df-shadow-sm)}
+.composer b{background:var(--df-primary);color:var(--df-bg);padding:8px 16px;border:2px solid var(--df-ink);border-radius:var(--df-radius);font-size:12px;box-shadow:var(--df-shadow-sm)}
+.status{display:flex;gap:16px;padding:7px 14px;background:var(--df-ink);color:var(--df-bg);font-family:var(--df-font-mono);font-size:9px;letter-spacing:.08em}
+.status b{color:var(--df-warn)}
+</style>
+</head>
+<body>
+<span class="tag">PREVIEW DO PRODUTO — tokens reais de components/dropfood/tokens.css (skin dropfood.yaml) — sistema F0-F6 · fork core/ d0509566</span>
+<div class="win">
+  <div class="side">
+    <div class="logo"><div class="d">D</div><div><b>DROPFOOD<b><small>AGENT · FORK</small></b></b></div></div>
+    <div class="nv">
+      <div class="on">● Operação</div><div class="off">Radar de preços</div><div class="off">Espelho catálogo</div><div class="off">Portal iFood</div><div class="off">Backup</div>
+    </div>
+    <div class="box"><b>LOJA</b><br><span style="color:#fdf9f0;font-weight:700;font-size:12px">Adega do Seu João</span><br><span style="color:rgba(253,249,240,.6)">reseller · markup 49%</span>
+      <div class="chip"><span class="dot"></span>sessão portal ativa</div>
+    </div>
+    <div class="box"><b>BOTS</b><br><span style="font-size:10px;line-height:1.7">b1 Estrategista <span class="dot yel" style="width:5px;height:5px"></span><br>b2 Radar <span class="dot"></span><br>b6 Revisor <span class="dot"></span><br>b7 Controle <span class="dot"></span></span></div>
+    <div class="box"><b>SISTEMA</b><br><span style="font-size:10px;line-height:1.7">core fork d0509566<br>MIT · CI sanitize ✓<br><span class="dot"></span>health OK 30min</span></div>
+  </div>
+  <div class="main">
+    <div class="hdr"><div><b>Operação — Mini Mercado</b><br><small>6h de ciclo · radar 7h · já rodou 2x hoje</small></div><div class="badge">F0 ✓ · F1 próximos passos</div></div>
+    <div class="msgs">
+      <div class="m me"><p>roda o radar e me mostra o veredito de hoje</p></div>
+      <div class="m op"><p>Radar concluído (Adega do Seu João · fornecedor Atacadão X):</p>
+        <table><tr><td>Cerveja Lata 350ml</td><td>venda R$ 3,99 · vitrine R$ 3,49</td><td class="down">DESCE →</td><td>R$ 3,29 <span class="pill p-desc">margem 47%</span></td></tr>
+        <tr><td>Refrigerante 2L</td><td>venda R$ 6,99 · compra R$ 4,50</td><td class="ok">MANTEM</td><td>R$ 6,99</td></tr>
+        <tr><td>Salgadinho 100g</td><td>margem 8,6%</td><td class="down">DESCE →</td><td>R$ 2,99 <span class="pill p-desc">faixa ok</span></td></tr></table>
+        <p style="margin-top:6px;font-size:11px;color:var(--df-dim)">faixas da categoria bebidas: bom &lt;40% · ok &lt;25% — ajustes propostos, aplique com o espelho.</p></div>
+      <div class="m op"><p>Espelho — sincronia com o fornecedor:</p>
+        <table><tr><td>Refrigerante 2L</td><td>indisponível no forn.</td><td><span class="pill p-tira">TIRA_DO_AR</span></td></tr>
+        <tr><td>Cerveja Lata 350ml</td><td>disponível</td><td><span class="pill p-man">mantém no ar</span></td></tr></table></div>
+      <div class="m op"><p><span class="dot"></span>portal_monitor: sessão ativa · próxima checagem em 23min<br><span class="dot yel"></span>ifood-sdk: F0 verificado — OTP manual quando o radar de vitrine for ativado <span class="pill p-man">--com-sdk</span></p></div>
+      <div class="m me"><p>boa, pode aplicar</p></div>
+      <div class="m op"><p>Aplicado via config da loja. Próximo ciclo em 7h. <span style="color:var(--df-primary)" class="ok">✓</span></p></div>
+    </div>
+    <div class="composer"><span>mensagem para o operador…</span><b>Enviar</b></div>
+    <div class="status"><span>DROPFOOD fork · core d0509566 ✓</span><span>RADAR 7h <b>OK</b></span><span>PORTAL <b>OK</b></span><span>OTP <b>manual</b></span><span style="margin-left:auto">cream/ink/pink/mint · Archivo Black</span></div>
+  </div>
+</div>
+</body>
+</html>
