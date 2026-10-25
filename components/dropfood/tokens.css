@@ -1,18 +1,25 @@
-/* DROPFOOD — tokens (cores oficiais do DESIGN-DROPFOOD) */
+/* DROPFOOD — tokens (design system do dashboard da loja, decisão do dono 25/10)
+   Canônica: dashboard/assets/neubrutal.css — cream/ink/pink/mint/canary/lilac/coral
+   sombras 4/6/9px diagonais, raios 18/8/9999, Archivo Black + Space Grotesk + Space Mono */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
 :root {
-  --df-bg: #171310;        /* fundo café */
-  --df-ink: #0f0d0b;       /* quase preto (texto/sombra) */
-  --df-paper: #ede5d8;     /* papel */
-  --df-dim: #9c9185;       /* secundário */
-  --df-border: #3a332b;    /* borda estrutura */
-  --df-primary: #f0b429;   /* amarelo */
-  --df-secondary: #34d399; /* verde */
-  --df-tertiary: #f87171;  /* vermelho */
-  --df-warn: #fb923c;      /* laranja */
-  --df-brand: #16a34a;     /* verde da loja */
-  --df-brand-deep: #14532d;
-  --df-radius: 4px;
-  --df-shadow: 0 4px 0 var(--df-ink);
-  --df-shadow-sm: 0 2px 0 var(--df-ink);
-  --df-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --df-bg: #fdf9f0;            /* cream — fundo (base clara) */
+  --df-ink: #111111;           /* texto/bordas/sombras */
+  --df-paper: #fffdf7;         /* cards sobre o grid */
+  --df-dim: rgba(17, 17, 17, .62);  /* texto secundário */
+  --df-primary: #ff3d81;       /* pink — ação, accent */
+  --df-secondary: #3ddc97;     /* mint — ok/sucesso */
+  --df-tertiary: #ff6b5e;      /* coral — erro/bloqueio */
+  --df-warn: #ffd23f;          /* canary — atenção/preço bom */
+  --df-lilac: #c8a2ff;         /* destaque alternado */
+  --df-brand: #0e9f6e;         /* mint profundo p/ links AA sobre cream */
+  --df-radius: 8px;
+  --df-radius-lg: 18px;
+  --df-shadow: 4px 4px 0 var(--df-ink);
+  --df-shadow-sm: 3px 3px 0 var(--df-ink);
+  --df-shadow-lg: 6px 6px 0 var(--df-ink);
+  --df-font: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --df-font-display: 'Archivo Black', 'Space Grotesk', sans-serif;
+  --df-font-mono: 'Space Mono', ui-monospace, monospace;
 }

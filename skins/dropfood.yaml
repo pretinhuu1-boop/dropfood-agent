@@ -1,67 +1,70 @@
-# DROPFOOD skin — identidade do produto (mercado BR, quente, acolhedor, tech).
+# DROPFOOD skin — identidade do produto.
+# Paleta canônica = design system do dashboard da loja (neubrutal.css):
+# cream #FDF9F0 · ink #111 · pink #FF3D81 · mint #3DDC97 · canary #FFD23F ·
+# lilac #C8A2FF · coral #FF6B5E — decisão do dono 25/10.
 # Cobre CLI + TUI + Desktop de uma vez. Reverter: hermes config set display.skin default
 
 name: dropfood
-description: DROPFOOD — café quente, amarelo de preço bom, verde de entrega
+description: DROPFOOD — cream, pink e mint neubrutal (cara do dashboard da loja)
 
 colors:
-  # Base surface — café de bairro à noite (quente, não preto frio).
-  background: "#171310"
+  # Base surface — cream (mesma do dashboard).
+  background: "#FDF9F0"
 
-  # Brand accent — amarelo-mostarda (energia, preço bom, contraste AA).
-  ui_accent: "#F0B429"
-  banner_accent: "#F0B429"
+  # Brand accent — pink (ação, tab ativa, botões).
+  ui_accent: "#FF3D81"
+  banner_accent: "#FF3D81"
 
-  # Text hierarchy — creme quente.
-  banner_title: "#F7F2EA"   # headings / primary
-  banner_text: "#EDE5D8"    # body foreground
-  ui_text: "#EDE5D8"
-  ui_label: "#D8CCBB"
-  banner_dim: "#9C9185"     # muted / secondary
-  # Borders — NEUBRUTAL: moldura marcada em amarelo (bloco sólido), não apagada.
-  banner_border: "#F0B429"
-  ui_border: "#F0B429"
+  # Text hierarchy — ink sobre cream (contraste chapado).
+  banner_title: "#111111"
+  banner_text: "#111111"
+  ui_text: "#111111"
+  ui_label: "#8F897E"
+  banner_dim: "#8F897E"
+  # Borders — NEUBRUTAL: moldura marcada em ink (2px, sombra dura).
+  banner_border: "#111111"
+  ui_border: "#111111"
 
-  # Semantic status — verde entrega / laranja atenção / vermelho tomate.
-  ui_ok: "#34D399"
-  ui_warn: "#FB923C"
-  ui_error: "#F87171"
-  ui_tool: "#F0B429"        # marcador ● de tool-call (amarelo, sem tocar headings)
-  ui_thinking: "#B4A896"    # texto de raciocínio
+  # Semantic status — mint / canary / coral.
+  ui_ok: "#3DDC97"
+  ui_warn: "#FFD23F"
+  ui_error: "#FF6B5E"
+  ui_tool: "#FF3D81"        # marcador ● de tool-call
+  ui_thinking: "#6B655C"    # texto de raciocínio
 
-  # CLI / TUI chrome — NEUBRUTAL: chão preto puro, moldura amarela.
-  prompt: "#F0B429"
-  input_rule: "#F0B429"
-  response_border: "#F0B429"
-  status_bar_bg: "#000000"
-  status_bar_text: "#EDE5D8"
-  status_bar_strong: "#F7F2EA"
-  status_bar_dim: "#9C9185"
-  status_bar_good: "#34D399"
-  status_bar_warn: "#FB923C"
-  status_bar_bad: "#F0B429"
-  status_bar_critical: "#F87171"
-  session_label: "#F0B429"
-  session_border: "#F0B429"
+  # CLI / TUI chrome — NEUBRUTAL: chão ink, moldura dupla.
+  prompt: "#FF3D81"
+  input_rule: "#111111"
+  response_border: "#111111"
+  status_bar_bg: "#111111"
+  status_bar_text: "#FDF9F0"
+  status_bar_strong: "#FF3D81"
+  status_bar_dim: "#A8A294"
+  status_bar_good: "#3DDC97"
+  status_bar_warn: "#FFD23F"
+  status_bar_bad: "#FF6B5E"
+  status_bar_critical: "#FF6B5E"
+  session_label: "#FF3D81"
+  session_border: "#111111"
 
-  # Menus / seleção — NEUBRUTAL: chão cafés com item ativo amarelo.
-  completion_menu_bg: "#1E1A15"
-  completion_menu_current_bg: "#3A2E14"
-  selection_bg: "#F0B429"
-  shell_dollar: "#34D399"
-  voice_status_bg: "#000000"
+  # Menus / seleção — cream com item ativo pink.
+  completion_menu_bg: "#FFFDF7"
+  completion_menu_current_bg: "#FF3D81"
+  selection_bg: "#FF3D81"
+  shell_dollar: "#3DDC97"
+  voice_status_bg: "#111111"
 
-  # Diff — verde entrega / vermelho tomate.
-  diff_added: "#34D399"
-  diff_removed: "#F87171"
-  diff_added_word: "#6EE7B7"
-  diff_removed_word: "#FCA5A5"
+  # Diff — mint / coral.
+  diff_added: "#0E9F6E"
+  diff_removed: "#FF6B5E"
+  diff_added_word: "#12B981"
+  diff_removed_word: "#FF8A80"
 
   # Syntax — leve ajuste quente.
-  syntax_string: "#F0B429"
-  syntax_number: "#34D399"
-  syntax_keyword: "#F87171"
-  syntax_comment: "#9C9185"
+  syntax_string: "#FF3D81"
+  syntax_number: "#0E9F6E"
+  syntax_keyword: "#C2410C"
+  syntax_comment: "#8F897E"
 
 # Flavor — identidade do produto.
 branding:

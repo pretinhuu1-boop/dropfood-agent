@@ -117,20 +117,29 @@ apêndice mapeia cada token para as keys reais do skin engine do Hermes.
 
 ## Colors
 
-- **Primary — Amarelo-mostarda (#F0B429):** ação, preço, energia. O accent de
-  tudo que é clicável e o molde das bordas neubrutal (contraste AA sobre o
-  fundo café).
-- **Secondary — Verde entrega (#34D399):** sucesso, disponível, entregue.
-- **Tertiary — Vermelho tomate (#F87171):** erro, bloqueio, falta.
-- **Warn — Laranja (#FB923C):** atenção, quase rompendo a faixa.
-- **Neutral — Creme (#EDE5D8):** texto primário sobre o fundo café.
-- **NeutralDim — Café seco (#9C9185):** texto secundário, conectores.
-- **Background — Café de bairro (#171310):** superfície base (não preto frio).
-- **Ink (#000000):** chão sólido (status bar) e sombras duras.
-- **Border (#3A332B):** bordas internas; **moldura marcada usa Primary**.
-- **Brand — Verde mercado (#16a34a / #14532d):** a marca (logo, web ui),
-  usado em hover e identidade; mantém a herança da vitrine web.
-- **Paper (#fafaf9):** texto sobre Brand (só sobre BrandDeep, que passa AA).
+Paleta canônica = **design system do dashboard da loja** (`dashboard/assets/neubrutal.css`,
+localhost:8501 — decisão do dono 25/10): cream + ink + pink + mint + canary +
+lilac + coral, sombras diagonais 4/6/9px, raios 18/8/9999, display Archivo
+Black. O produto DROPFOOD herda EXATAMENTE essas cores/componentes, sem
+mudar a estrutura.
+
+- **Cream (#FDF9F0):** fundo base (paper) — a app troca para base clara.
+- **Ink (#111111):** texto, bordas de moldura (2px) e todas as sombras duras.
+- **Primary — Pink (#FF3D81):** ação, destaque, tab ativa, botões. O accent
+  de tudo que é clicável (contraste AA sobre Cream).
+- **Secondary — Mint (#3DDC97):** sucesso, disponível, entregue, ok.
+- **Tertiary — Coral (#FF6B5E):** erro, bloqueio, falta (pulso de alerta).
+- **Warn — Canary (#FFD23F):** atenção, preço bom, destaque de valor.
+- **Lilac (#C8A2FF):** destaque secundário alternado (barras, ícones).
+- **Fontes:** `Archivo Black` (display/kpi) · `Space Grotesk` (corpo) ·
+  `Space Mono` (números/mono) — as mesmas do dashboard.
+- **Sombras:** `4px 4px 0` (sm) / `6px 6px 0` (md) / `9px 9px 0` (lg) sempre
+  com Ink; hover desloca (-1,-1) e active afunda (+1,+1).
+- **Raios:** 18px (cards/chat) · 8px (botões/inputs) · 9999 (pills/tabs).
+- **Grid:** fundo com grid 24px (rgba ink 5%) — textura do dashboard.
+- **Brand — Mint profundo (#0E9F6E):** derivado do Mint p/ links sobre
+  Cream (AA); o verde-mercado anterior é substituído pela paleta do
+  dashboard (decisão do dono).
 
 Regra: nunca texto de baixo contraste sobre Primary (texto = Ink). Verde
 Brand só em superfícies claras, em BrandDeep ou como hover — nunca como

@@ -14,12 +14,12 @@
   color: var(--df-ink);
   box-shadow: var(--df-shadow-sm);
 }
-.df-chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--df-border); }
+.df-chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--df-ink); }
 .df-chip--ok   { background: var(--df-secondary); }
-.df-chip--ok .df-chip__dot   { background: #065f46; }
+.df-chip--ok .df-chip__dot   { background: #0e9f6e; }
 .df-chip--warn { background: var(--df-warn); }
-.df-chip--warn .df-chip__dot { background: #7c2d12; }
-.df-chip--bad  { background: var(--df-tertiary); color: #fff; }
-.df-chip--bad .df-chip__dot  { background: #7f1d1d; }
-.df-chip--info { background: var(--df-paper); }
+.df-chip--warn .df-chip__dot { background: #b45309; }
+.df-chip--bad  { background: var(--df-tertiary); color: var(--df-ink); }
+.df-chip--bad .df-chip__dot  { background: #c2410c; }
+.df-chip--info { background: var(--df-lilac); }
 .df-chip--info .df-chip__dot { background: var(--df-primary); }
