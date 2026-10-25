@@ -1,6 +1,6 @@
 # DROPFOOD Agent
 
-O agente de operação para donos de loja no **iFood Mercado** — open source (MIT), em português, roda em cima do [Hermes Agent](https://hermes-agent.nousresearch.com) no seu próprio computador.
+O agente de operação para donos de loja no **iFood Mercado** — open source (MIT), em português. O DROPFOOD é um **fork do [Hermes Agent](https://hermes-agent.nousresearch.com)** (NousResearch, MIT) modificado o mínimo possível para a operação do iFood: identidade própria (ícone, login = a sua loja, skin) + camada de operação, sobre o núcleo upstream intacto.
 
 ## O que ele faz
 
@@ -8,16 +8,19 @@ O agente de operação para donos de loja no **iFood Mercado** — open source (
 - **Catálogo espelhado** — seu catálogo acompanha o fornecedor; o que faltou no atacado sai do ar na hora (menos cancelamento, nota de loja preservada).
 - **Alerta de falta** — falta no fornecedor vira tarefa: repor, substituir ou tirar do ar.
 - **Time de bots em PT-BR** — ofícios de estratégia, radar, operação e revisão, cada um com sua função (persona por loja via perfil).
-- **Interface em português** — o Hermes desktop inteiro traduzido, com a skin DROPFOOD (neobrutalismo de mercado: café, amarelo de preço bom, verde de entrega).
+- **Interface em português** — o desktop inteiro do fork traduzido (PT-BR de fábrica), com a skin DROPFOOD (neobrutalismo de mercado: café, amarelo de preço bom, verde de entrega).
 
 ## Para quem é
 
 - **Modelo loja-reseller**: você abre uma loja no iFood Mercado sem estoque — compra do fornecedor local sob demanda, entrega e recebe o repasse em ~7 dias. O DROPFOOD é o cérebro da operação.
 - **Dono de mercado com estoque**: mesma ferramenta, operação clássica.
 
-## Instalação (1 min)
+## Instalação
 
-Requisitos: macOS/Linux, [Hermes Agent](https://hermes-agent.nousresearch.com/docs) instalado, [Ollama](https://ollama.com) (opcional — para os bots 100% locais).
+O DROPFOOD **é** o Hermes (fork) — não se instala "em cima" de outro. O repo traz o núcleo pinado em `core/` (commit em `core/UPSTREAM.txt`) + a camada do produto.
+
+- **Hoje (desenvolvimento, até a F4)**: o `install.sh` aplica a camada do produto (skin, skill, perfil) sobre uma instalação local do Hermes.
+- **Distribuição final (F4)**: instalador standalone com wizard — o dono de loja **não** instala o Hermes separado nunca.
 
 ```bash
 git clone https://github.com/pretinhuu1-boop/dropfood-agent.git
@@ -31,16 +34,16 @@ Depois: copie `config.yaml.example` para `~/.hermes/loja/config.yaml` e preencha
 
 ## Arquitetura
 
-Overlay sobre o Hermes core (sem fork):
+**Fork do Hermes com modificação mínima** (decisão do dono 25/10):
 
 | Camada | O que é |
 |---|---|
-| D0 | Hermes core (upstream, atualiza via `hermes update`) |
-| D1 | Skin do produto (`skins/dropfood.yaml` — paleta em `design/DESIGN.md`) |
+| D0 | `core/` = fork do Hermes (NousResearch, MIT, commit pinado em `core/UPSTREAM.txt`) |
+| D1 | Skin do produto (`skins/dropfood.yaml` — paleta em `design/DESIGN.md`) + PT-BR |
 | D2 | Skill `dropfood-ops` + scripts (radar, catálogo, monitor) |
 | D3 | Bots (SOULs templates em `bots/templates/` — persona por loja) |
 | D4 | UI do produto (Desktop Plugin SDK — panes OPS, ⌘K, dashboard tab) |
-| D5 | Distribuição (este repo + install.sh + wizard) |
+| D5 | Distribuição (este repo + instalador standalone/wizard — F4) |
 
 Detalhes em `docs/ARQUITETURA.md`.
 

@@ -36,8 +36,10 @@ suportados).
 
 ## Camadas
 
-- **D0 — Hermes core**: nada do DROPFOOD altera o core. Atualizações upstream
-  não quebram o produto (caem os mesmos riscos de fork drift).
+- **D0 — core/ (fork)**: snapshot **pinado** do upstream (UPSTREAM.txt,
+  commit d0509566). O produto altera o MÍNIMO (identidade + operação);
+  atualização = re-snapshot + diff listável, nunca reimplementar. Risco de
+  fork drift mitigado por diff pequeno + pin em UPSTREAM.txt.
 - **D1 — Skin + idioma**: `skins/dropfood.yaml` instala em
   `~/.hermes/skins/`; tokens 1:1 com `design/DESIGN.md` (spec Google,
   validado com `npx @google/design.md lint`, WCAG AA). PT-BR via

@@ -3,7 +3,10 @@
 ## Requisitos
 
 - macOS 13+ ou Linux (x86_64/ARM64)
-- [Hermes Agent](https://hermes-agent.nousresearch.com/docs) instalado e rodando
+- O fork **já traz o Hermes** (`core/` pinado). Hoje (progresso da F4) o
+  `install.sh` aplica a camada do produto sobre uma instalação Hermes local
+  de desenvolvimento; na distribuição final o produto instala sozinho
+  (standalone, wizard) — o dono de loja nunca instala o Hermes separado.
 - [Ollama](https://ollama.com) + modelos locais (para os bots 100% offline):
   `ollama pull lfm2.5:8b qwen3.5:2b qwen3.5:4b`
 
@@ -50,4 +53,5 @@ A persona dos bots, o radar e os alertas leem esse arquivo.
 cd dropfood-agent && git pull && ./install.sh
 ```
 
-O Hermes core atualiza separado: `hermes update`.
+O upstream do Hermes **não** se atualiza por cima (é fork): `core/UPSTREAM.txt`
+pina o commit; atualizar = re-snapshot + diff listável, nunca reimplementar o core.

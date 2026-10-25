@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# DROPFOOD Agent — install.sh (overlay sobre o Hermes core)
+# DROPFOOD Agent — install.sh (camada do produto; o core é o fork em core/)
 # Uso: ./install.sh
 set -euo pipefail
 
