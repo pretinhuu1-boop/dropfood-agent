@@ -85,8 +85,11 @@ def main():
         sys.exit(f"catálogo não encontrado em {dados}/catalogo.json — "
                  "gere o catálogo antes (export do portal ou planilha)")
 
-    vitrine = load_json(os.path.join(dados, "vitrine.json")) if vitrine_on else None
-    vmap = {(v.get("nome") or "").lower(): v.get("preco") for v in (vitrine or [])} if vitrine else {}
+    vitrine_raw = load_json(os.path.join(dados, "vitrine.json")) if vitrine_on else None
+    # formato novo (f0_paridade.py): {"vitrine": [{nome, preco}, ...]} ;
+    # formato antigo/alternativo: lista pura [{nome, preco}]
+    vitrine = vitrine_raw.get("vitrine") if isinstance(vitrine_raw, dict) else vitrine_raw
+    vmap = {(v.get("nome") or "").lower(): v.get("preco") for v in (vitrine or [])}
 
     itens, alertas = [], []
     for it in catalogo:

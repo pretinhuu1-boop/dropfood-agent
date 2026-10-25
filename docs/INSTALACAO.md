@@ -22,11 +22,19 @@ O install copia em `~/.hermes/`:
 - `skins/dropfood.yaml` (+ ativa `display.skin=dropfood` e `display.language=pt`)
 - `skills/dropfood-ops/` (skill de operação)
 - `loja/config.yaml` (perfil da loja — a partir do exemplo)
-- `dropfood/scripts/` (utilitários)
+- `dropfood/scripts/` (utilitários: radar, espelho, monitor, wizard, backup)
+
+Para o radar de vitrine (ifood-sdk, opcional — exige Python 3.14+):
+`./install.sh --com-sdk` (cria `~/.hermes/dropfood/venv` com pyyaml + ifood-sdk).
 
 ## Configuração da loja
 
-Edite `~/.hermes/loja/config.yaml`:
+Duas formas:
+
+1. **Wizard** (recomendado): `python3 ~/.hermes/dropfood/scripts/wizard.py`
+   — pergunta nome, cidade, modelo, fornecedor, markup e localização e
+   grava o `~/.hermes/loja/config.yaml`.
+2. **Manual**: edite `~/.hermes/loja/config.yaml` (referência em `docs/PERFIL-LOJA.md`).
 
 ```yaml
 loja:

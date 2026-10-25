@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 # DROPFOOD Agent — install.sh (camada do produto; o core é o fork em core/)
-# Uso: ./install.sh
+# Uso: ./install.sh [--com-sdk]
+#   --com-sdk    instala também o venv do produto (pyyaml + ifood-sdk p/ radar
+#                de vitrine — exige Python 3.14+; sem ele, o radar de vitrine
+#                fica desligado, o resto funciona normal).
 set -euo pipefail
 
 HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+COM_SDK=0
+for a in "$@"; do
+  [ "$a" = "--com-sdk" ] && COM_SDK=1
+done
 
 echo "→ Instalando DROPFOOD em $HERMES_HOME"
 
@@ -35,8 +42,39 @@ fi
 # Scripts utilitários
 mkdir -p "$HERMES_HOME/dropfood/scripts"
 for s in "$REPO_DIR"/scripts/*.py "$REPO_DIR"/scripts/*.sh; do
-  [ -f "$s" ] && cp "$s" "$HERMES_HOME/dropfood/scripts/" && echo "  ✓ script $(basename "$s")"
+  [ -f "$s" ] && cp "$s" "$HERMES_HOME/dropfood/scripts/" && chmod +x "$HERMES_HOME/dropfood/scripts/$(basename "$s")" && echo "  ✓ script $(basename "$s")"
 done
+# SDK de vitrine (subpasta)
+mkdir -p "$HERMES_HOME/dropfood/scripts/sdk"
+for s in "$REPO_DIR"/scripts/sdk/*.py; do
+  [ -f "$s" ] && cp "$s" "$HERMES_HOME/dropfood/scripts/sdk/" && chmod +x "$HERMES_HOME/dropfood/scripts/sdk/$(basename "$s")" && echo "  ✓ script sdk/$(basename "$s")"
+done
+
+# Venv do produto + ifood-sdk (opcional — radar de vitrine)
+if [ "$COM_SDK" = "1" ]; then
+  PY=""
+  for c in python3.14 python3.13 python3.12 python3; do
+    if command -v "$c" >/dev/null 2>&1 && "$c" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 14) else 1)' 2>/dev/null; then
+      PY="$(command -v "$c")"
+      break
+    fi
+  done
+  if [ -z "$PY" ]; then
+    echo "  ! Python 3.14+ não encontrado — radar de vitrine desligado. Instale o"
+    echo "    python 3.14 e rode: ./install.sh --com-sdk"
+  else
+    VENV="$HERMES_HOME/dropfood/venv"
+    if [ ! -x "$VENV/bin/python" ]; then
+      "$PY" -m venv "$VENV"
+    fi
+    "$VENV/bin/python" -m pip install -q --upgrade pip >/dev/null 2>&1 || true
+    "$VENV/bin/python" -m pip install -q "pyyaml" "ifood-sdk @ git+https://github.com/felipeadeildo/ifood-sdk" 2>/dev/null \
+      && echo "  ✓ venv + ifood-sdk ($("$VENV/bin/python" -c 'import ifood; print("import OK")' 2>/dev/null || echo "pendente"))" \
+      || echo "  ! falha ao instalar ifood-sdk (rede?) — radar de vitrine desligado; tente: pip install ifood-sdk"
+  fi
+else
+  echo "  · radar de vitrine (ifood-sdk) NÃO instalado — para ativar: ./install.sh --com-sdk"
+fi
 
 echo ""
 echo "Pronto! Próximo passo:"

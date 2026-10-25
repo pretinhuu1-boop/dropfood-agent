@@ -29,6 +29,11 @@ Todo o DROPFOOD lê a identidade da loja de UM arquivo:
 | `vitrine.sdk` | bool | usa ifood-sdk para preço de vitrine (OTP do dono, 1x manual) |
 | `vitrine.concorrentes` | list | merchant_ids opcionais; vazio = descobre dos pedidos recentes |
 
+### localizacao (radar de vitrine / ifood-sdk)
+| campo | tipo | descrição |
+|---|---|---|
+| `lat` / `lng` | float | coordenadas da loja — usadas pelo ifood-sdk (`--coletar`) |
+
 ### portal
 | campo | tipo | descrição |
 |---|---|---|

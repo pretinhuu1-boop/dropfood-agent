@@ -48,10 +48,14 @@ risco real de ban da loja. O agente usa a sessão já aberta no navegador.
 
 ## Ferramentas do produto (scripts em ~/.hermes/dropfood/scripts/)
 
-- `radar_precos.py` — ciclo completo de comparação e classificação (config da loja)
+- `wizard.py` — cria o perfil da loja guiado (config.yaml a partir do template)
+- `radar_precos.py` — ciclo completo de comparação e classificação (config da loja);
+  com `radar.vitrine.sdk: true` compara também com `vitrine.json` (ifood-sdk)
 - `espelho.py` — sincroniza catálogo com o fornecedor (tira/volta do ar)
 - `portal_monitor.py` — saúde da sessão do portal (estado em `~/.hermes/loja/<id>/`)
 - `notas_para_dataset.py` — notas de operação → JSONL de treino (para o treinador)
+- `sdk/f0_paridade.py` — radar de vitrine via ifood-sdk (OTP manual do dono;
+  requer `install.sh --com-sdk`; ver `docs/IFOOD-SDK.md`)
 
 ## Regras de escrita
 

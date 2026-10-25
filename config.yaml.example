@@ -7,6 +7,10 @@ loja:
   regiao: ""                    # bairro/zona — usada pelo radar de concorrência
   modelo: reseller              # reseller (sem estoque, compra sob demanda) | dono (estoque próprio)
 
+localizacao:                    # usada pelo radar de vitrine (ifood-sdk)
+  lat: 0.0                      # ex.: -23.5505
+  lng: 0.0                      # ex.: -46.6333
+
 fornecedor:
   nome: ""                      # atacadista local
   markup: 0.49                  # markup sobre o preço de atacado (0.49 = 49%)
@@ -64,3 +68,14 @@ display:
 #   dropfood_components:
 #     command: "/caminho/do/python/do/runtime"
 #     args: ["/caminho/dropfood-agent/scripts/components/mcp_components.py"]
+#
+# ─────────────────────────────────────────────────────────────────────────
+# ifood-sdk (F2) — radar de vitrine como tool MCP pros bots.
+# Requer: ./install.sh --com-sdk (venv do produto com o ifood-sdk).
+# Sessão: OTP manual do dono (scripts/sdk/f0_paridade.py --set-phone/--login/
+# --coletar). Ferramentas: ifood_* (merchants.items, orders.recent, ...).
+# ─────────────────────────────────────────────────────────────────────────
+# mcp_servers:
+#   ifood:
+#     command: "/caminho/do/venv/do/produto/bin/python"
+#     args: ["-m", "ifood.mcp"]
