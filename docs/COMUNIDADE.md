@@ -1,6 +1,6 @@
 # Comunidade DROPFOOD — modelo (desenho, 25/10/2026)
 
-Decisão do dono: **acesso à comunidade por R$ 50,00/mês**. Os conteúdos
+Decisão do dono: **acesso à comunidade por R$ 49,99/mês**. Os conteúdos
 entregues são a pesquisa do ESTRATEGISTA (B1) e o material do canal
 (nelsonneton, YouTube — criação real de vídeos com IA, do conceito ao
 resultado).
@@ -8,7 +8,7 @@ resultado).
 ## 1. Funil
 
 ```
-YouTube (público)          Comunidade (R$ 50/mês)
+YouTube (público)          Comunidade (R$ 49,99/mês)
 ┌────────────────────┐     ┌──────────────────────────┐
 │ alcance: bastidor, │     │ aprofundamento:          │
 │ caso reseller,     │ ──► │ pesquisa completa (B1),  │
@@ -20,7 +20,7 @@ YouTube (público)          Comunidade (R$ 50/mês)
 O vídeo público mostra o **QUÊ** (história + resultado). A comunidade entrega
 o **COMO** (material de quem está operando de verdade).
 
-## 2. O que o membro recebe (R$ 50/mês)
+## 2. O que o membro recebe (R$ 49,99/mês)
 
 1. **Pesquisa mensal exclusiva** — a investigação do B1 (dados, fontes,
    tabelas): o mesmo material que embasa o produto.
@@ -35,7 +35,7 @@ o **COMO** (material de quem está operando de verdade).
 
 | | A — Membresia YouTube + comunidade própria | B — Só comunidade própria |
 |---|---|---|
-| Cobrança | Membresia do canal (R$ 50/mês, cobrança do próprio YouTube) + Discord/WhatsApp pro conteúdo | Gateway de produto digital recorrente (Kiwify/Hotmart/Eduzz) + Discord/WhatsApp |
+| Cobrança | Membresia do canal (R$ 49,99/mês, cobrança do próprio YouTube) + Discord/WhatsApp pro conteúdo | Gateway de produto digital recorrente (Kiwify/Hotmart/Eduzz) + Discord/WhatsApp |
 | Prós | Cobrança nativa do YouTube, selo no canal, zero gateway | Controle total do conteúdo e da base |
 | Contras | YouTube leva % da membresia; conteúdo precisa morar no YT | Precisa configurar gateway + política de reembolso |
 | Entrega | Vídeos/returns de membro + arquivos no Discord | Mesmo, sem atrelar ao YT |
@@ -44,7 +44,7 @@ Recomendação da casa: **começar com A** (o YouTube já existe, membros ativa
 algoritmo e a cobrança é nativa; migra pra B quando a base crescer e quiser
 desatrelar).
 
-**DECISÃO DO DONO (25/10/2026): opção A** — membresia do YouTube (R$ 50/mês)
+**DECISÃO DO DONO (25/10/2026): opção A** — membresia do YouTube (R$ 49,99/mês)
 + Discord/WhatsApp para o conteúdo de membro. Implementação: ativar
 membresia no YouTube Studio (requisito: canal monetizado/elegível) e abrir o
 Discord da comunidade quando o 1º membro pagar.
