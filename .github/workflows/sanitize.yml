@@ -15,7 +15,7 @@ jobs:
         run: |
           set +e
           LEAKED=$(grep -rIniE "nelsao|nelsão|tatuapé|tatuape|mini mercado" . \
-            --exclude-dir=.git --exclude=.github/workflows/sanitize.yml 2>/dev/null)
+            --exclude-dir=.git --exclude="sanitize.yml" 2>/dev/null)
           if [ -n "$LEAKED" ]; then
             echo "::error::DADOS SENSÍVEIS ENCONTRADOS — remova antes de publicar:"
             echo "$LEAKED" | head -20
