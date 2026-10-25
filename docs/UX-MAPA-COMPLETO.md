@@ -32,6 +32,14 @@ Logo, "navegador central operado pelo agente" não é componente novo: é
 - ❌ NOV = componente novo a criar na camada do produto (shadcn-compatível)
 - 🟡 AJU = ajuste de posição/cor/comportamento na camada, base nativa
 
+> **Estado 25/10 (fechamento de rodada):** componentes das Zonas A, B, C e E
+> entregues na biblioteca (17 no registry), `drive-preview`/`browser-session`
+> (Zona A), faixas/modal (B/C) e `df-onboarding` (E). Integração na janela
+> real = plugin desktop runtime `desktop-plugins/dropfood/plugin.js` (D4),
+> chip de operação na status bar já no formato verificado do core (hello-runtime);
+> as panes do navegador central entram na v2 do plugin quando a build do
+> desktop estiver disponível (exige node 26).
+
 ## 1. Zona A — Navegador central (portal iFood)
 
 | Peça | Status | Onde/Base | Componente dropfood |
