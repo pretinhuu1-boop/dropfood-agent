@@ -7,6 +7,9 @@ atualizando o Hermes normalmente (`hermes update`) — o produto é uma camada.
 
 ```
 ┌─────────────────────────────────────────────────┐
+│ D6 Pessoal Cloud: GitHub privado DO DONO        │
+│    sync da loja (backup_loja.sh) — retomada     │
+├─────────────────────────────────────────────────┤
 │ D5 Distribuição: repo + install.sh + wizard     │
 ├─────────────────────────────────────────────────┤
 │ D4 UI do produto: Desktop Plugin SDK            │
@@ -17,7 +20,7 @@ atualizando o Hermes normalmente (`hermes update`) — o produto é uma camada.
 │    persona por loja via ~/.hermes/loja/config   │
 ├─────────────────────────────────────────────────┤
 │ D2 Skill dropfood-ops + scripts (radar, portal, │
-│    catálogo, monitor)                           │
+│    catálogo, monitor, backup_loja)              │
 ├─────────────────────────────────────────────────┤
 │ D1 Skin dropfood.yaml + PT-BR (language pack)   │
 ├─────────────────────────────────────────────────┤
@@ -48,6 +51,11 @@ atualizando o Hermes normalmente (`hermes update`) — o produto é uma camada.
   apenas, core intacto).
 - **D5 — Distribuição**: repo público + `install.sh` (one-click) + wizard
   para quem não tem Hermes + docs.
+- **D6 — Pessoal Cloud (GitHub privado)**: cada dono conecta o GitHub DELE;
+  `~/.hermes/loja/<id>/` sincroniza pra um repo privado do próprio dono
+  (`dropfood-loja-<id>`) — retomada de qualquer máquina. Design completo em
+  `docs/BACKUP-GITHUB.md`; usa o que já existe (gh CLI, device flow) e não
+  reinventa backup do Hermes (nativo: `hermes backup`/`import`/`sync`).
 
 ## Regras de higiene (obrigatórias)
 
@@ -60,3 +68,7 @@ atualizando o Hermes normalmente (`hermes update`) — o produto é uma camada.
    particular é neutralizado antes de entrar.
 4. **Se o upstream mudar**: revalidar skin/keys e SDK contra a versão
    instalada (catálogo de capacidades + testes).
+5. **Dados de loja sobem SOMENTE pro repo privado do dono** (D6 —
+   `scripts/backup_loja.sh`). Nunca pro repo público do produto; tokens,
+   cookies de sessão do portal e senhas nunca versionam (gitignore local
+   da pasta loja).

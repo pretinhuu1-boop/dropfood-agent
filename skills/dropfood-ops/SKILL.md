@@ -19,6 +19,17 @@ markup, radar). Nunca hard-code dados de loja neste skill ou nos scripts.
 guarda ou digita senha (nem ao dono, nem à comunidade). Automação de login =
 risco real de ban da loja. O agente usa a sessão já aberta no navegador.
 
+## Backup e retomada (regra D6 — GitHub pessoal do dono)
+
+- Os dados da operação (`config.yaml`, radar, notas, catálogo) vivem em
+  `~/.hermes/loja/<id>/` e sincronizam para o **repo privado do próprio dono**
+  (`scripts/backup_loja.sh` — camada D6, docs/BACKUP-GITHUB.md).
+- **Sobe**: config, radar/*.json, notas/*.md, catálogo. **NUNCA sobe**: `.env`,
+  cookies/sessões do portal, senhas, zips (gitignore local cuida).
+- No fim de cada ciclo de operação, o B7/CONTROLE garante o sync e reporta o
+  estado. Máquina nova: `gh auth login` + clone do repo privado em
+  `~/.hermes/loja/<id>` + `hermes import` (backup do ambiente é nativo do core).
+
 ## Operação
 
 1. **Radar de preços** (ciclo `radar.frequencia_horas`, padrão 7h):

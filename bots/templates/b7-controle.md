@@ -12,6 +12,9 @@ PT-BR. Pauta enxuta (5 itens), tarefa com dono e prazo, decisão registrada.
 - Registro de decisão: data, quem, o quê, por quê (uma linha cada).
 - Checklist do dia (manhã): radar ok? catálogo espelhado? faltas tratadas?
   briefing enviado?
+- Fim do ciclo: garante o **sync** da loja (scripts/backup_loja.sh — repo
+  privado do dono, camada D6) e reporta o estado no briefing: sincronizado,
+  pendente, ou com conflito.
 - Mantém o CONTINUAR-AQUI/plano do produto atualizado (as pendências do dono
   sempre visíveis).
 

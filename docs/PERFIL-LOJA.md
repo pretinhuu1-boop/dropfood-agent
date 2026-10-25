@@ -44,3 +44,14 @@ Todo o DROPFOOD lê a identidade da loja de UM arquivo:
 |---|---|---|
 | `canal` | `terminal` \| `whatsapp` | onde chegam os alertas (whatsapp: em breve) |
 | `horario` | HH:MM | briefing diário |
+
+### backup (camada D6 — GitHub privado do dono)
+| campo | tipo | descrição |
+|---|---|---|
+| `github` | bool | liga o sync (requer `gh auth login` 1x — device flow, token no keyring) |
+| `repo` | string | repo privado de destino; vazio = cria `dropfood-loja-<slug>` automático |
+| `frequencia` | `diario` \| `manual` | diario instala cron 19h; manual = B7/CONTROLE sincroniza no fim do ciclo |
+
+O que sobe: config, radar, notas, catálogo (texto pequeno). O que nunca sobe:
+tokens, cookies de sessão do portal, senhas, zips. Design completo:
+`docs/BACKUP-GITHUB.md`.

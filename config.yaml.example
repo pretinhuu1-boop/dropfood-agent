@@ -35,3 +35,8 @@ runtime:                        # motores locais (Ollama) — base escolhida no 
 alertas:
   canal: "terminal"             # terminal | whatsapp (em breve)
   horario: "08:00"              # briefing diário
+
+backup:                         # camada D6 — sync p/ GitHub privado do dono
+  github: false                 # true depois de conectar (gh auth login 1x)
+  repo: ""                      # ex.: "meunome/dropfood-loja-minhaloja" (vazio = cria automático)
+  frequencia: "diario"          # diario (cron 19h) | manual (B7 faz no fim do ciclo)
