@@ -151,6 +151,15 @@ na barra do navegador: ativa/OTP pendente/quebrada).
 - **D9** — `browser-session` da Zona A como chip na barra do navegador ou na
   statusbar? (recomendado: barra do navegador)
 
+## 9.1 Decisões RESOLVIDAS (dono, 25/10 — D6-D9)
+
+- **D6** — usar o que já existe: preview-act/drive nativo comanda o pane
+  central (sem browser duplicado)
+- **D7** — o dono vai criar o logo; b5-produtor (H1) gerou versões a partir
+  da canônica; alinhar o SVG final na F1 (ícone .icns/.ico deriva dele)
+- **D8** — tela de entrada F1 = onboarding nativo RE-SKINADO (sem fluxo novo)
+- **D9** — `browser-session` como chip na BARRA DO NAVEGADOR
+
 ## 10. Ordem de execução (após aprovação)
 
 1. Fase 1 (F1 identidade + Zona A): skins/branding, df-onboarding, ícone,

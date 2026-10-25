@@ -1,0 +1,29 @@
+/* bot-avatar — avatar do bot com cor canônica + iniciais (D3).
+   Square neobrutal com borda ink e a cor do bot; inicial em Archivo Black.
+   Variações: b1 pink "B1", b2 mint "B2", b6 lilac "B6", b7 canary "B7",
+   bt canary "BT", operador coral "OP" (ink sobre a cor sempre — contraste). */
+.df-bot-avatar {
+  --ba-bg: var(--df-ink);
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--df-ink);
+  border-radius: 6px;
+  background: var(--ba-bg);
+  color: var(--df-ink);
+  font-family: var(--df-font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  box-shadow: var(--df-shadow-sm);
+  flex: none;
+  user-select: none;
+}
+.df-bot-avatar--b1 { background: var(--df-primary); }
+.df-bot-avatar--b2 { background: var(--df-secondary); }
+.df-bot-avatar--b6 { background: var(--df-lilac); }
+.df-bot-avatar--b7 { background: var(--df-warn); }
+.df-bot-avatar--bt { background: var(--df-warn); }
+.df-bot-avatar--op { background: var(--df-tertiary); }
+.df-bot-avatar--sm { width: 18px; height: 18px; font-size: 0.5rem; border-radius: 5px; }
+.df-bot-avatar--lg { width: 34px; height: 34px; font-size: 0.8rem; border-radius: 8px; }

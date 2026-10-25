@@ -22,4 +22,15 @@
   --df-font: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --df-font-display: 'Archivo Black', 'Space Grotesk', sans-serif;
   --df-font-mono: 'Space Mono', ui-monospace, monospace;
+
+  /* MOVIMENTO (decisão do dono 25/10 — D4): linguagem única de animação.
+     Neobrutal é quadrado: deslocamento 2px, durações curtas, steps em vez
+     de lerp onde der. Cor segue a canônica — estes tokens NÃO são cor. */
+  --df-motion-fast: 80ms;
+  --df-motion-base: 150ms;
+  --df-motion-slow: 260ms;
+  --df-motion-step: 2px;        /* deslocamento neobrutal (hover/active/pulse) */
+  --df-motion-ease: cubic-bezier(.2, .8, .2, 1);
+  --df-motion-ease-step: steps(2, jump-none);  /* passos discretos p/ pulses */
+  --df-motion-pulse: 1.1s;      /* ciclo do dot de atividade */
 }

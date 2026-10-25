@@ -1,0 +1,48 @@
+/* working-card — card expandido de trabalho do bot (missão, steps, resultado).
+   Reaproveita a identidade do activity-strip por cima; base = run-summary +
+   delegate-card do Hermes. Bloco autônomo com sombra forte. */
+.df-working-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 2px solid var(--df-ink);
+  border-radius: var(--df-radius);
+  background: var(--df-paper);
+  box-shadow: var(--df-shadow);
+  padding: 12px 14px;
+  font-family: var(--df-font);
+  min-width: 0;
+}
+.df-working-card__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.df-working-card__title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.df-working-card__meta {
+  font-family: var(--df-font-mono);
+  font-size: 0.62rem;
+  color: var(--df-dim);
+  white-space: nowrap;
+}
+.df-working-card__body {
+  font-size: 0.78rem;
+  color: var(--df-dim);
+  line-height: 1.5;
+}
+.df-working-card__foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--df-font-mono);
+  font-size: 0.62rem;
+  color: var(--df-dim);
+}

@@ -1,0 +1,44 @@
+/* activity-strip — faixa de 1 linha: identidade do bot + verbo vivo + steps.
+   Envolve o ticker nativo do Hermes (tool-ticker) com a identidade DROPFOOD.
+   Border-left 6px na cor do bot (D3); fundo paper; sombra neobrutal. */
+.df-activity-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--df-font);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border: 2px solid var(--df-ink);
+  border-left-width: 6px;
+  border-radius: var(--df-radius);
+  background: var(--df-paper);
+  box-shadow: var(--df-shadow-sm);
+  min-width: 0;
+}
+.df-activity-strip--b1 { border-left-color: var(--df-primary); }
+.df-activity-strip--b2 { border-left-color: var(--df-secondary); }
+.df-activity-strip--b6 { border-left-color: var(--df-lilac); }
+.df-activity-strip--b7 { border-left-color: var(--df-warn); }
+.df-activity-strip--bt { border-left-color: var(--df-warn); }
+.df-activity-strip--op { border-left-color: var(--df-tertiary); }
+
+.df-activity-strip__who {
+  font-family: var(--df-font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--df-dim);
+  white-space: nowrap;
+}
+.df-activity-strip__verb {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.df-activity-strip__inner {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 0.75rem;
+}

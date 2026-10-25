@@ -95,6 +95,96 @@
           "content": "import * as React from \"react\";\nimport \"./tokens.css\";\n\nexport interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {\n  invalid?: boolean;\n}\n\nexport function Input({ invalid = false, className = \"\", ...props }: InputProps) {\n  return (\n    <input\n      aria-invalid={invalid || undefined}\n      className={`df-input ${invalid ? \"df-input--invalid\" : \"\"} ${className}`.trim()}\n      {...props}\n    />\n  );\n}\n"
         }
       ]
+    },
+    {
+      "name": "activity-dot",
+      "registry": [
+        {
+          "name": "activity-dot",
+          "type": "registry:file",
+          "path": "components/dropfood/activity-dot.css",
+          "content": "/* activity-dot — ponto de estado que pulsa enquanto o bot trabalha.\n   Neobrutal: quadradinho ink que \"desloca\" 2px no passo (não pulsa suave).\n   Uso: <span class=\"df-activity-dot df-activity-dot--b1\" /> */\n.df-activity-dot {\n  --ad-c: var(--df-ink);\n  --ad-size: 10px;\n  display: inline-block;\n  width: var(--ad-size);\n  height: var(--ad-size);\n  border: 2px solid var(--df-ink);\n  border-radius: 3px;                 /* quase quadrado — linguagem neobrutal */\n  background: var(--ad-c);\n  box-shadow: var(--df-shadow);\n  flex: none;\n}\n/* atividade: desloca 2px no loop, em passos (nada de lerp suave) */\n.df-activity-dot--live {\n  animation: df-dot-step var(--df-motion-pulse) infinite var(--df-motion-ease-step);\n}\n@keyframes df-dot-step {\n  0%, 100% { transform: translate(0, 0); }\n  50%      { transform: translate(2px, 2px); }\n}\n/* cores por bot — D3: b1 pink · b2 mint · b6 lilac · b7 canary · bt canary · operador coral */\n.df-activity-dot--b1   { --ad-c: var(--df-primary); }\n.df-activity-dot--b2   { --ad-c: var(--df-secondary); --ad-c-sh: rgba(0,0,0,.35); }\n.df-activity-dot--b6   { --ad-c: var(--df-lilac); }\n.df-activity-dot--b7   { --ad-c: var(--df-warn); }\n.df-activity-dot--bt   { --ad-c: var(--df-warn); }\n.df-activity-dot--op   { --ad-c: var(--df-tertiary); }\n.df-activity-dot--idle { background: var(--df-paper); }  /* ocioso: vazio */\n"
+        },
+        {
+          "name": "activity-dot",
+          "type": "registry:file",
+          "path": "components/dropfood/activity-dot.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\nimport \"./activity-dot.css\";\n\nexport type BotId = \"b1\" | \"b2\" | \"b6\" | \"b7\" | \"bt\" | \"op\";\n\nexport interface ActivityDotProps extends React.HTMLAttributes<HTMLSpanElement> {\n  /** qual bot está trabalhando (cor canônica D3) */\n  bot?: BotId;\n  /** true = animado (trabalhando); false/omit = parado */\n  live?: boolean;\n}\n\n/* ponto de atividade do bot — quadrado ink que desloca 2px em steps enquanto\n   trabalha; parado fica branco com borda (vazio). */\nexport function ActivityDot({ bot, live = false, className = \"\", ...props }: ActivityDotProps) {\n  const cls = [\n    \"df-activity-dot\",\n    bot ? `df-activity-dot--${bot}` : \"\",\n    live ? \"df-activity-dot--live\" : \"df-activity-dot--idle\",\n    className,\n  ].filter(Boolean).join(\" \");\n  return <span aria-label={live ? \"trabalhando\" : \"ocioso\"} className={cls} {...props} />;\n}\n"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "activity-strip",
+      "registry": [
+        {
+          "name": "activity-strip",
+          "type": "registry:file",
+          "path": "components/dropfood/activity-strip.css",
+          "content": "/* activity-strip — faixa de 1 linha: identidade do bot + verbo vivo + steps.\n   Envolve o ticker nativo do Hermes (tool-ticker) com a identidade DROPFOOD.\n   Border-left 6px na cor do bot (D3); fundo paper; sombra neobrutal. */\n.df-activity-strip {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  font-family: var(--df-font);\n  font-size: 0.78rem;\n  font-weight: 600;\n  padding: 6px 10px;\n  border: 2px solid var(--df-ink);\n  border-left-width: 6px;\n  border-radius: var(--df-radius);\n  background: var(--df-paper);\n  box-shadow: var(--df-shadow-sm);\n  min-width: 0;\n}\n.df-activity-strip--b1 { border-left-color: var(--df-primary); }\n.df-activity-strip--b2 { border-left-color: var(--df-secondary); }\n.df-activity-strip--b6 { border-left-color: var(--df-lilac); }\n.df-activity-strip--b7 { border-left-color: var(--df-warn); }\n.df-activity-strip--bt { border-left-color: var(--df-warn); }\n.df-activity-strip--op { border-left-color: var(--df-tertiary); }\n\n.df-activity-strip__who {\n  font-family: var(--df-font-mono);\n  font-size: 0.62rem;\n  font-weight: 700;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  color: var(--df-dim);\n  white-space: nowrap;\n}\n.df-activity-strip__verb {\n  font-weight: 700;\n  white-space: nowrap;\n}\n.df-activity-strip__inner {\n  flex: 1;\n  min-width: 0;\n  overflow: hidden;\n  font-size: 0.75rem;\n}\n"
+        },
+        {
+          "name": "activity-strip",
+          "type": "registry:file",
+          "path": "components/dropfood/activity-strip.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\nimport \"./activity-dot.css\";\nimport \"./activity-strip.css\";\nimport { ActivityDot, type BotId } from \"./activity-dot\";\n\nexport interface ActivityStripProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** bot trabalhando — dita cor e rótulo (D3) */\n  bot: BotId;\n  /** verbo vivo: \"escaneando concorrentes…\" */\n  verb?: string;\n  /** conteúdo rolável — o ticker nativo do Hermes passa aqui */\n  children?: React.ReactNode;\n}\n\nconst WHO: Record<BotId, string> = {\n  b1: \"b1 estrategista\",\n  b2: \"b2 radar\",\n  b6: \"b6 revisor\",\n  b7: \"b7 controle\",\n  bt: \"bt treinador\",\n  op: \"operador\",\n};\n\n/* faixa 1-linha de atividade por bot: dot animado + quem + verbo + conteúdo\n   (ticker). Onde o run-ticker do Hermes é wrapper para dar identidade. */\nexport function ActivityStrip({ bot, verb, children, className = \"\", ...props }: ActivityStripProps) {\n  return (\n    <div className={`df-activity-strip df-activity-strip--${bot} ${className}`.trim()} {...props}>\n      <ActivityDot bot={bot} live />\n      <span className=\"df-activity-strip__who\">{WHO[bot]}</span>\n      {verb && <span className=\"df-activity-strip__verb\">{verb}</span>}\n      <span className=\"df-activity-strip__inner\">{children}</span>\n    </div>\n  );\n}\n"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "step-progress",
+      "registry": [
+        {
+          "name": "step-progress",
+          "type": "registry:file",
+          "path": "components/dropfood/step-progress.css",
+          "content": "/* step-progress — quadrinhos neobrutais de progresso (passos do bot).\n   Sem barra de progresso: quadrados ink preenchidos por passo concluído.\n   Uso: .df-steps[data-total=\"5\"][data-done=\"3\"] */\n.df-steps {\n  display: inline-flex;\n  gap: 3px;\n  align-items: center;\n}\n.df-steps__sq {\n  width: 8px;\n  height: 8px;\n  border: 2px solid var(--df-ink);\n  border-radius: 2px;\n  background: var(--df-paper);\n  transition: background var(--df-motion-fast) var(--df-motion-ease);\n}\n.df-steps__sq--done {\n  background: var(--df-ink);\n}\n.df-steps__sq--live {\n  background: var(--df-primary);\n  animation: df-steps-blink var(--df-motion-pulse) infinite var(--df-motion-ease-step);\n}\n@keyframes df-steps-blink {\n  0%, 100% { transform: translate(0, 0); }\n  50%      { transform: translate(1px, 1px); }\n}\n.df-steps__label {\n  font-family: var(--df-font-mono);\n  font-size: 0.62rem;\n  font-weight: 700;\n  color: var(--df-dim);\n  margin-left: 5px;\n}\n"
+        },
+        {
+          "name": "step-progress",
+          "type": "registry:file",
+          "path": "components/dropfood/step-progress.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\nimport \"./step-progress.css\";\n\nexport interface StepProgressProps extends React.HTMLAttributes<HTMLDivElement> {\n  total: number;\n  done: number;\n  /** true = o passo ATUAL pisca pink (está rodando agora) */\n  live?: boolean;\n  label?: string;\n}\n\n/* progresso neobrutal em passos: feito = ink, atual = pink piscando,\n   futuro = vazio. Nunca uma barra — passos são discretos. */\nexport function StepProgress({ total, done, live = false, label, className = \"\", ...props }: StepProgressProps) {\n  const squares = Array.from({ length: Math.max(0, total) }, (_, i) => (\n    <span\n      key={i}\n      className={\n        i < done ? \"df-steps__sq df-steps__sq--done\" :\n        i === done && live ? \"df-steps__sq df-steps__sq--live\" :\n        \"df-steps__sq\"\n      }\n    />\n  ));\n  return (\n    <div className={`df-steps ${className}`.trim()} role=\"progressbar\" aria-valuemin={0} aria-valuemax={total} aria-valuenow={done} {...props}>\n      {squares}\n      {label && <span className=\"df-steps__label\">{label}</span>}\n    </div>\n  );\n}\n"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "working-card",
+      "registry": [
+        {
+          "name": "working-card",
+          "type": "registry:file",
+          "path": "components/dropfood/working-card.css",
+          "content": "/* working-card — card expandido de trabalho do bot (missão, steps, resultado).\n   Reaproveita a identidade do activity-strip por cima; base = run-summary +\n   delegate-card do Hermes. Bloco autônomo com sombra forte. */\n.df-working-card {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  border: 2px solid var(--df-ink);\n  border-radius: var(--df-radius);\n  background: var(--df-paper);\n  box-shadow: var(--df-shadow);\n  padding: 12px 14px;\n  font-family: var(--df-font);\n  min-width: 0;\n}\n.df-working-card__head {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.df-working-card__title {\n  font-weight: 700;\n  font-size: 0.85rem;\n  flex: 1;\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.df-working-card__meta {\n  font-family: var(--df-font-mono);\n  font-size: 0.62rem;\n  color: var(--df-dim);\n  white-space: nowrap;\n}\n.df-working-card__body {\n  font-size: 0.78rem;\n  color: var(--df-dim);\n  line-height: 1.5;\n}\n.df-working-card__foot {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  font-family: var(--df-font-mono);\n  font-size: 0.62rem;\n  color: var(--df-dim);\n}\n"
+        },
+        {
+          "name": "working-card",
+          "type": "registry:file",
+          "path": "components/dropfood/working-card.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\nimport \"./working-card.css\";\nimport \"./activity-dot.css\";\nimport { ActivityDot, type BotId } from \"./activity-dot\";\nimport { StepProgress } from \"./step-progress\";\n\nexport interface WorkingCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** bot que está trabalhando (cor e rótulo D3) */\n  bot: BotId;\n  title: string;\n  stepsDone?: number;\n  stepsTotal?: number;\n  meta?: string;      // ex.: \"3 de 7 concorrentes\"\n  duration?: string;  // ex.: \"12s\"\n  children?: React.ReactNode;\n}\n\n/* card expandido de trabalho: quem, o quê, progresso em passos e foot com\n   duração. Base do modo expandido da atividade (working-card do mapa). */\nexport function WorkingCard({\n  bot, title, stepsDone = 0, stepsTotal = 0, meta, duration,\n  children, className = \"\", ...props\n}: WorkingCardProps) {\n  return (\n    <div className={`df-working-card ${className}`.trim()} {...props}>\n      <div className=\"df-working-card__head\">\n        <ActivityDot bot={bot} live />\n        <span className=\"df-working-card__title\">{title}</span>\n        {meta && <span className=\"df-working-card__meta\">{meta}</span>}\n      </div>\n      {stepsTotal > 0 && (\n        <StepProgress total={stepsTotal} done={stepsDone} live label={duration} />\n      )}\n      {children && <div className=\"df-working-card__body\">{children}</div>}\n      {duration && !stepsTotal && (\n        <div className=\"df-working-card__foot\">{duration}</div>\n      )}\n    </div>\n  );\n}\n"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "bot-avatar",
+      "registry": [
+        {
+          "name": "bot-avatar",
+          "type": "registry:file",
+          "path": "components/dropfood/bot-avatar.css",
+          "content": "/* bot-avatar — avatar do bot com cor canônica + iniciais (D3).\n   Square neobrutal com borda ink e a cor do bot; inicial em Archivo Black.\n   Variações: b1 pink \"B1\", b2 mint \"B2\", b6 lilac \"B6\", b7 canary \"B7\",\n   bt canary \"BT\", operador coral \"OP\" (ink sobre a cor sempre — contraste). */\n.df-bot-avatar {\n  --ba-bg: var(--df-ink);\n  display: inline-grid;\n  place-items: center;\n  width: 24px;\n  height: 24px;\n  border: 2px solid var(--df-ink);\n  border-radius: 6px;\n  background: var(--ba-bg);\n  color: var(--df-ink);\n  font-family: var(--df-font-display);\n  font-size: 0.62rem;\n  letter-spacing: 0.02em;\n  box-shadow: var(--df-shadow-sm);\n  flex: none;\n  user-select: none;\n}\n.df-bot-avatar--b1 { background: var(--df-primary); }\n.df-bot-avatar--b2 { background: var(--df-secondary); }\n.df-bot-avatar--b6 { background: var(--df-lilac); }\n.df-bot-avatar--b7 { background: var(--df-warn); }\n.df-bot-avatar--bt { background: var(--df-warn); }\n.df-bot-avatar--op { background: var(--df-tertiary); }\n.df-bot-avatar--sm { width: 18px; height: 18px; font-size: 0.5rem; border-radius: 5px; }\n.df-bot-avatar--lg { width: 34px; height: 34px; font-size: 0.8rem; border-radius: 8px; }\n"
+        },
+        {
+          "name": "bot-avatar",
+          "type": "registry:file",
+          "path": "components/dropfood/bot-avatar.tsx",
+          "content": "import * as React from \"react\";\nimport \"./tokens.css\";\nimport \"./bot-avatar.css\";\nimport type { BotId } from \"./activity-dot\";\n\nexport interface BotAvatarProps extends React.HTMLAttributes<HTMLSpanElement> {\n  bot: BotId;\n  size?: \"sm\" | \"md\" | \"lg\";\n}\n\nconst INITIAL: Record<BotId, string> = {\n  b1: \"B1\", b2: \"B2\", b6: \"B6\", b7: \"B7\", bt: \"BT\", op: \"OP\",\n};\n\n/* avatar de bot: quadrado neobrutal com a cor canônica do bot + iniciais.\n   Contraste: a cor é fundo, as iniciais são ink (AA sobre pink/mint/etc.). */\nexport function BotAvatar({ bot, size = \"md\", className = \"\", ...props }: BotAvatarProps) {\n  return (\n    <span className={`df-bot-avatar df-bot-avatar--${bot} ${size !== \"md\" ? `df-bot-avatar--${size}` : \"\"} ${className}`.trim()} {...props}>\n      {INITIAL[bot]}\n    </span>\n  );\n}\n"
+        }
+      ],
+      "type": "registry:ui"
     }
   ]
 }

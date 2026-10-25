@@ -1,0 +1,31 @@
+/* activity-dot — ponto de estado que pulsa enquanto o bot trabalha.
+   Neobrutal: quadradinho ink que "desloca" 2px no passo (não pulsa suave).
+   Uso: <span class="df-activity-dot df-activity-dot--b1" /> */
+.df-activity-dot {
+  --ad-c: var(--df-ink);
+  --ad-size: 10px;
+  display: inline-block;
+  width: var(--ad-size);
+  height: var(--ad-size);
+  border: 2px solid var(--df-ink);
+  border-radius: 3px;                 /* quase quadrado — linguagem neobrutal */
+  background: var(--ad-c);
+  box-shadow: var(--df-shadow);
+  flex: none;
+}
+/* atividade: desloca 2px no loop, em passos (nada de lerp suave) */
+.df-activity-dot--live {
+  animation: df-dot-step var(--df-motion-pulse) infinite var(--df-motion-ease-step);
+}
+@keyframes df-dot-step {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(2px, 2px); }
+}
+/* cores por bot — D3: b1 pink · b2 mint · b6 lilac · b7 canary · bt canary · operador coral */
+.df-activity-dot--b1   { --ad-c: var(--df-primary); }
+.df-activity-dot--b2   { --ad-c: var(--df-secondary); --ad-c-sh: rgba(0,0,0,.35); }
+.df-activity-dot--b6   { --ad-c: var(--df-lilac); }
+.df-activity-dot--b7   { --ad-c: var(--df-warn); }
+.df-activity-dot--bt   { --ad-c: var(--df-warn); }
+.df-activity-dot--op   { --ad-c: var(--df-tertiary); }
+.df-activity-dot--idle { background: var(--df-paper); }  /* ocioso: vazio */

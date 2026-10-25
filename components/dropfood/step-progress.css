@@ -1,0 +1,34 @@
+/* step-progress — quadrinhos neobrutais de progresso (passos do bot).
+   Sem barra de progresso: quadrados ink preenchidos por passo concluído.
+   Uso: .df-steps[data-total="5"][data-done="3"] */
+.df-steps {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}
+.df-steps__sq {
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--df-ink);
+  border-radius: 2px;
+  background: var(--df-paper);
+  transition: background var(--df-motion-fast) var(--df-motion-ease);
+}
+.df-steps__sq--done {
+  background: var(--df-ink);
+}
+.df-steps__sq--live {
+  background: var(--df-primary);
+  animation: df-steps-blink var(--df-motion-pulse) infinite var(--df-motion-ease-step);
+}
+@keyframes df-steps-blink {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(1px, 1px); }
+}
+.df-steps__label {
+  font-family: var(--df-font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--df-dim);
+  margin-left: 5px;
+}
