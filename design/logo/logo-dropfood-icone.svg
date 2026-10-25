@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&amp;display=swap');
+      .display { font-family: 'Archivo Black', 'Arial Black', 'Arial', sans-serif; font-weight: 400; }
+    </style>
+  </defs>
+
+  <!-- icone DROPFOOD 1:1, sacola de mercado + traco de entrega (chevron de movimento) -->
+  <rect x="8" y="8" width="84" height="84" rx="18" fill="#111111"/>
+  <rect x="4" y="4" width="84" height="84" rx="18" fill="#FDF9F0" stroke="#111111" stroke-width="2"/>
+
+  <!-- sacola: corpo pink chapado com borda ink -->
+  <rect x="20" y="36" width="48" height="40" rx="8" fill="#FF3D81" stroke="#111111" stroke-width="2"/>
+
+  <!-- alça da sacola -->
+  <path d="M28 36 V29 C28 22 60 22 60 29 V36" fill="none" stroke="#111111" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- traço de entrega: chevron de movimento à direita -->
+  <path d="M72 50 L79 57 L72 64" fill="none" stroke="#111111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

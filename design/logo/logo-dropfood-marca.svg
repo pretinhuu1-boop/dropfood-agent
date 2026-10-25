@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Space+Grotesk:wght@700&amp;display=swap');
+      .display { font-family: 'Archivo Black', 'Arial Black', 'Arial', sans-serif; font-weight: 400; }
+      .label { font-family: 'Space Grotesk', 'Arial', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- fundo cream: marca DROPFOOD, simbolo + nome (uso em capa/README) -->
+  <rect width="520" height="160" fill="#FDF9F0"/>
+
+  <!-- simbolo: tile cream + sombra dura -->
+  <rect x="28" y="28" width="104" height="104" rx="18" fill="#111111"/>
+  <rect x="24" y="24" width="104" height="104" rx="18" fill="#FDF9F0" stroke="#111111" stroke-width="2"/>
+
+  <!-- sacola pink -->
+  <rect x="50" y="54" width="52" height="44" rx="8" fill="#FF3D81" stroke="#111111" stroke-width="2"/>
+  <!-- alca -->
+  <path d="M60 54 V46 C60 38 92 38 92 46 V54" fill="none" stroke="#111111" stroke-width="5.5" stroke-linecap="round"/>
+  <!-- traco de entrega (chevron de movimento) -->
+  <path d="M107 73 L114 78 L107 83" fill="none" stroke="#111111" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- nome: DROP ink + FOOD pink -->
+  <text x="148" y="96" class="display" font-size="56" letter-spacing="-1.5">
+    <tspan fill="#111111">DROP</tspan><tspan fill="#FF3D81">FOOD</tspan>
+  </text>
+
+  <!-- sublinha AGENT -->
+  <text x="150" y="126" class="label" font-size="16" font-weight="700" letter-spacing="4" fill="#111111">AGENT</text>
+  <rect x="150" y="132" width="168" height="8" rx="8" fill="#FF3D81"/>
+</svg>
