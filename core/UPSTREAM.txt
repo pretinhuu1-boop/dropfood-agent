@@ -1,0 +1,5 @@
+UPSTREAM: https://github.com/NousResearch/hermes-agent
+COMMIT:  d05095663342556788cf2a198bfa7844cc7968ab
+DATA:    2026-10-25 (snapshot F0, depth 1)
+LICENCA: MIT (verificado 25/10)
+UPDATE:  re-snapshot + diff listavel; nunca reimplementar o core.
