@@ -51,3 +51,23 @@ canal:                          # canal do dono (usado pelo bot YOUTUBE/B8)
   nome: ""                      # nome do canal
   url: ""                       # ex.: https://www.youtube.com/@MeuCanal
   comunidade: false             # true quando o modelo R$ 50/mês estiver no ar (docs/COMUNIDADE.md)
+
+# ─────────────────────────────────────────────────────────────────────────
+# DROPFOOD — identidade (pele default do produto, neubrutal sobre o layout
+# nativo do Hermes; a skin repinta CLI + TUI + Desktop).
+# ─────────────────────────────────────────────────────────────────────────
+display:
+  skin: skins/dropfood.yaml     # skin oficial do produto (skins/dropfood.yaml)
+  interface: auto               # tui | auto | plain (mantém o padrão do Hermes)
+
+# ─────────────────────────────────────────────────────────────────────────
+# MCP — biblioteca de componentes DROPFOOD (registry shadcn-compatível).
+# Server nativo do produto: scripts/components/mcp_components.py
+# Ferramentas: list_components, get_component, search_components,
+# install_component → o agente "instala" componente por linguagem natural.
+# command = python do runtime Hermes (tem o pacote mcp SDK 2.x).
+# ─────────────────────────────────────────────────────────────────────────
+# mcp_servers:
+#   dropfood_components:
+#     command: "/caminho/do/python/do/runtime"
+#     args: ["/caminho/dropfood-agent/scripts/components/mcp_components.py"]
