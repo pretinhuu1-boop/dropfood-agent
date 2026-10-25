@@ -36,6 +36,12 @@ alertas:
   canal: "terminal"             # terminal | whatsapp (em breve)
   horario: "08:00"              # briefing diário
 
+radar:
+  vitrine:                    # preço de vitrine da concorrência (ifood-sdk)
+    sdk: false                # true = usa ifood-sdk (OTP do dono, 1x manual)
+    concorrentes: []          # merchant_ids opcionais; vazio = descobre dos
+                              # pedidos recentes da conta do dono
+
 backup:                         # camada D6 — sync p/ GitHub privado do dono
   github: false                 # true depois de conectar (gh auth login 1x)
   repo: ""                      # ex.: "meunome/dropfood-loja-minhaloja" (vazio = cria automático)
