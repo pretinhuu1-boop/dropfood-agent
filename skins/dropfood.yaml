@@ -1,0 +1,74 @@
+# DROPFOOD skin — identidade do produto (mercado BR, quente, acolhedor, tech).
+# Cobre CLI + TUI + Desktop de uma vez. Reverter: hermes config set display.skin default
+
+name: dropfood
+description: DROPFOOD — café quente, amarelo de preço bom, verde de entrega
+
+colors:
+  # Base surface — café de bairro à noite (quente, não preto frio).
+  background: "#171310"
+
+  # Brand accent — amarelo-mostarda (energia, preço bom, contraste AA).
+  ui_accent: "#F0B429"
+  banner_accent: "#F0B429"
+
+  # Text hierarchy — creme quente.
+  banner_title: "#F7F2EA"   # headings / primary
+  banner_text: "#EDE5D8"    # body foreground
+  ui_text: "#EDE5D8"
+  ui_label: "#D8CCBB"
+  banner_dim: "#9C9185"     # muted / secondary
+  # Borders — NEUBRUTAL: moldura marcada em amarelo (bloco sólido), não apagada.
+  banner_border: "#F0B429"
+  ui_border: "#F0B429"
+
+  # Semantic status — verde entrega / laranja atenção / vermelho tomate.
+  ui_ok: "#34D399"
+  ui_warn: "#FB923C"
+  ui_error: "#F87171"
+  ui_tool: "#F0B429"        # marcador ● de tool-call (amarelo, sem tocar headings)
+  ui_thinking: "#B4A896"    # texto de raciocínio
+
+  # CLI / TUI chrome — NEUBRUTAL: chão preto puro, moldura amarela.
+  prompt: "#F0B429"
+  input_rule: "#F0B429"
+  response_border: "#F0B429"
+  status_bar_bg: "#000000"
+  status_bar_text: "#EDE5D8"
+  status_bar_strong: "#F7F2EA"
+  status_bar_dim: "#9C9185"
+  status_bar_good: "#34D399"
+  status_bar_warn: "#FB923C"
+  status_bar_bad: "#F0B429"
+  status_bar_critical: "#F87171"
+  session_label: "#F0B429"
+  session_border: "#F0B429"
+
+  # Menus / seleção — NEUBRUTAL: chão cafés com item ativo amarelo.
+  completion_menu_bg: "#1E1A15"
+  completion_menu_current_bg: "#3A2E14"
+  selection_bg: "#F0B429"
+  shell_dollar: "#34D399"
+  voice_status_bg: "#000000"
+
+  # Diff — verde entrega / vermelho tomate.
+  diff_added: "#34D399"
+  diff_removed: "#F87171"
+  diff_added_word: "#6EE7B7"
+  diff_removed_word: "#FCA5A5"
+
+  # Syntax — leve ajuste quente.
+  syntax_string: "#F0B429"
+  syntax_number: "#34D399"
+  syntax_keyword: "#F87171"
+  syntax_comment: "#9C9185"
+
+# Flavor — identidade do produto.
+branding:
+  agent_name: DROPFOOD
+  prompt_symbol: "▸"
+  welcome: "DROPFOOD — sua loja, sua regra."
+  goodbye: "Até a próxima — o radar segue de olho."
+  help_header: "DROPFOOD — comandos"
+
+tool_prefix: "▹"

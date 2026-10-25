@@ -1,0 +1,16 @@
+# dados de operação — nunca no repo
+.env
+*.pem
+*.key
+*.p12
+
+# máquina
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+
+# ambiente local
+*.local.yaml
+loja/

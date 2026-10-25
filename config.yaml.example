@@ -1,0 +1,37 @@
+# DROPFOOD — perfil da loja (copy para ~/.hermes/loja/config.yaml e preencha)
+# Este arquivo vive FORA do repositório (nunca commitado) — é a identidade da sua loja.
+
+loja:
+  nome: "Minha Loja"            # nome exibido nos bots e relatórios
+  cidade: ""
+  regiao: ""                    # bairro/zona — usada pelo radar de concorrência
+  modelo: reseller              # reseller (sem estoque, compra sob demanda) | dono (estoque próprio)
+
+fornecedor:
+  nome: ""                      # atacadista local
+  markup: 0.49                  # markup sobre o preço de atacado (0.49 = 49%)
+  pedido_minimo: 0              # R$ mínimo do fornecedor (0 = sem mínimo)
+  prazo_entrega_h: 6            # prazo típico do fornecedor em horas
+
+radar:
+  frequencia_horas: 7           # ciclo do radar de preços
+  concorrentes: []              # lista de lojas/concorrentes para comparar
+  faixas:                       # faixas de preço (bom/ok/caro) por categoria
+    - categoria: "bebidas"
+      bom: 9.99
+      ok: 12.99
+      caro: 15.99
+
+portal:
+  login: manual                 # REGRA DE OURO: login manual do dono, 1x, nunca automatizado
+  email: ""                     # e-mail da conta iFood (só para referência local)
+
+runtime:                        # motores locais (Ollama) — base escolhida no radar de modelos:
+  ollama_url: "http://localhost:11434/v1"
+  motor: "lfm2.5:8b"            # motor agentic (tool-call nativo)
+  leve: "qwen3.5:2b"            # tarefas leves/rápidas
+  qualidade: "qwen3.5:4b"       # decisões de maior qualidade
+
+alertas:
+  canal: "terminal"             # terminal | whatsapp (em breve)
+  horario: "08:00"              # briefing diário
