@@ -1,9 +1,14 @@
 # Arquitetura — DROPFOOD Agent
 
-## Princípio: overlay, não fork
+## Princípio: FORK com modificação mínima (decisão do dono 25/10)
 
-O DROPFOOD vive em cima do **Hermes core** (MIT, upstream). Você continua
-atualizando o Hermes normalmente (`hermes update`) — o produto é uma camada.
+O DROPFOOD é um **fork do Hermes** (`core/` = snapshot de
+NousResearch/hermes-agent, MIT, commit d0509566 — ver core/UPSTREAM.txt).
+O núcleo upstream fica intacto; o produto modifica o MÍNIMO (identidade +
+operação) e reaproveita tudo nativo. Atualizações = re-snapshot com diff
+listável; nunca reimplementar o core. Login = conectar a loja do iFood
+(manual do dono 1x); API/provider = nativo (OpenRouter ou providers
+suportados).
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -24,7 +29,8 @@ atualizando o Hermes normalmente (`hermes update`) — o produto é uma camada.
 ├─────────────────────────────────────────────────┤
 │ D1 Skin dropfood.yaml + PT-BR (language pack)   │
 ├─────────────────────────────────────────────────┤
-│ D0 Hermes core (upstream, inalterado)           │
+│ D0 core/ = fork do Hermes (upstream MIT,        │
+│    modificação mínima: identidade/operação)     │
 └─────────────────────────────────────────────────┘
 ```
 
