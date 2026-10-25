@@ -44,6 +44,11 @@ Recomendação da casa: **começar com A** (o YouTube já existe, membros ativa
 algoritmo e a cobrança é nativa; migra pra B quando a base crescer e quiser
 desatrelar).
 
+**DECISÃO DO DONO (25/10/2026): opção A** — membresia do YouTube (R$ 50/mês)
++ Discord/WhatsApp para o conteúdo de membro. Implementação: ativar
+membresia no YouTube Studio (requisito: canal monetizado/elegível) e abrir o
+Discord da comunidade quando o 1º membro pagar.
+
 ## 4. Quem faz o quê (bots + dono)
 
 | Papel | Responsabilidade |
