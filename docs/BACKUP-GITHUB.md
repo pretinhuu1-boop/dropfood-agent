@@ -88,17 +88,23 @@ podem conter dados sensíveis em texto; ligar é decisão do dono (seção 7).
 > `dropfood sync` (backup_loja.sh).** Nunca para o repo público do produto;
 > tokens, cookies de sessão e senhas nunca versionam (gitignore local).
 
-## 6. Implementação v1
+## 6. Implementação v1 (comportamento final, testado ponta-a-ponta 25/10)
 
-- `scripts/backup_loja.sh`: connect / sync / restore-guide / --dry-run / --cron
-  (instala crontab diário do usuário, só com flag explícita).
-- `config.yaml` ganha `backup:` (github, repo, frequencia).
-- SOUL do B7/CONTROLE: garantir sync no fim do ciclo e reportar estado.
-- Skill dropfood-ops: seção "Backup e retomada".
+- `scripts/backup_loja.sh`: connect / sync / --release / --dry-run / --cron.
+- O **zip completo do ambiente (40MB, `hermes backup`)** NÃO versiona no git
+  (pesaria o history ~1.2GB/mês) — vai por **GitHub Release** (`--release`):
+  asset anexo, rotate 3, restore via `gh release download`.
+- O **snapshot crítico** (`hermes backup --quick`) roda em todo sync: interno
+  em `~/.hermes/state-snapshots/` (restaurável com `hermes snapshot restore`).
+- `config.yaml` ganha `backup:`; SOUL B7/CONTROLE garante o sync no fim do
+  ciclo; crontab diário 19h via `--cron`.
+- **Teste real (25/10)**: repo privado `pretinhuu1-boop/dropfood-loja-adega-demo`
+  criado, sync + release com sucesso; `.env` bloqueado (0 ocorrências na árvore).
 
-## 7. Decisões em aberto (dono)
+## 7. Decisões do dono (resolvidas 25/10)
 
-- D1: testar ponta-a-ponta criando um repo privado demo na conta do dono?
-- D2: incluir `hermes sessions export` no sync (off por padrão)?
-- D3: versionar também um `hermes backup --quick` por sync (zip pequeno,
-  ~KB) — dá restore do ambiente inteiro a partir do mesmo repo?
+- **D1** ✅ Testar ponta-a-ponta na conta real — FEITO (repo demo privado no ar).
+- **D2** ❌ `hermes sessions export` fica FORA do sync (conversas podem conter
+  dado sensível em texto).
+- **D3** ✅ Zip do ambiente SIM — via GitHub Release (não no history do git),
+  rotate 3; snapshot crítico interno roda em todo sync.

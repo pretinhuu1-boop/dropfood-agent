@@ -53,5 +53,12 @@ Todo o DROPFOOD lê a identidade da loja de UM arquivo:
 | `frequencia` | `diario` \| `manual` | diario instala cron 19h; manual = B7/CONTROLE sincroniza no fim do ciclo |
 
 O que sobe: config, radar, notas, catálogo (texto pequeno). O que nunca sobe:
-tokens, cookies de sessão do portal, senhas, zips. Design completo:
+tokens, cookies de sessão do portal, senhas, zips (zips do ambiente vão por
+GitHub Release — `--release`, rotate 3). Design completo:
 `docs/BACKUP-GITHUB.md`.
+
+### canal (bot YOUTUBE/B8)
+| campo | tipo | descrição |
+|---|---|---|
+| `nome` / `url` | string | identidade do canal do dono (persona do B8) |
+| `comunidade` | bool | liga o modelo R$ 50/mês (docs/COMUNIDADE.md) |

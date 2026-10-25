@@ -40,3 +40,8 @@ backup:                         # camada D6 — sync p/ GitHub privado do dono
   github: false                 # true depois de conectar (gh auth login 1x)
   repo: ""                      # ex.: "meunome/dropfood-loja-minhaloja" (vazio = cria automático)
   frequencia: "diario"          # diario (cron 19h) | manual (B7 faz no fim do ciclo)
+
+canal:                          # canal do dono (usado pelo bot YOUTUBE/B8)
+  nome: ""                      # nome do canal
+  url: ""                       # ex.: https://www.youtube.com/@MeuCanal
+  comunidade: false             # true quando o modelo R$ 50/mês estiver no ar (docs/COMUNIDADE.md)
